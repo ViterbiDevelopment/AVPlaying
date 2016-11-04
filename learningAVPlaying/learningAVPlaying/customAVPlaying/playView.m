@@ -7,17 +7,22 @@
 //
 
 #import "playView.h"
+
+#import "progressView.h"
+
+
 #import <AVFoundation/AVFoundation.h>
 
 
-@interface playView()
+@interface playView()<progressViewDelegate>
 
 
 @property(nonatomic,strong)AVPlayer *myPlayer;
 
 @property(nonatomic,strong)AVPlayerItem *playItem;
 
-@property(strong, nonatomic) id timeObserver; //视频播放时间观察者
+
+@property(nonatomic,strong)progressView *playProgress;
 
 
 
@@ -57,7 +62,6 @@
     if (self = [super initWithFrame:frame]) {
         
     
-      
         [self setUp];
         
     }
@@ -73,7 +77,6 @@
         
         _myPlayer = [[AVPlayer alloc] initWithPlayerItem:self.playItem];
         
-        
     }
 
     return _myPlayer;
@@ -82,7 +85,8 @@
 
 -(AVPlayerItem *)playItem{
 
-
+    if (_playItem == nil) {
+        
         NSString * path = [[NSBundle mainBundle] pathForResource:@"b" ofType:@"mp4"];
         
         NSURL *sourceMovieURL = [NSURL fileURLWithPath:path];
@@ -90,9 +94,10 @@
         AVAsset *movieAsset = [AVURLAsset URLAssetWithURL:sourceMovieURL options:nil];
         
         _playItem = [[AVPlayerItem alloc] initWithAsset:movieAsset];
-        
-    
-        return _playItem;
+       
+    }
+
+     return _playItem;
     
     
 }
@@ -114,6 +119,15 @@
     [self.layer addSublayer:playerLayer];
     
     
+    _playProgress = [[progressView alloc] initWithFrame:CGRectMake(0, self.frame.size.height - 40, self.frame.size.width, 40)];
+    
+    _playProgress.backgroundColor = [UIColor redColor];
+    
+    _playProgress.delegate = self;
+    
+    
+    [self addSubview:_playProgress];
+    
     
     [self addProgressObserver];
     
@@ -121,17 +135,50 @@
     
 
 }
+
+#pragma mark-------监听播放的状态
+
 - (void)addProgressObserver{
+    
     AVPlayerItem *playerItem = self.myPlayer.currentItem;
     //这里设置每秒执行一次
- //   __weak __typeof(self) weakself = self;
-    self.timeObserver = [_myPlayer addPeriodicTimeObserverForInterval:CMTimeMake(1.0, 1.0) queue:dispatch_get_main_queue() usingBlock:^(CMTime time) {
+    __weak __typeof(self) weakself = self;
+    
+   [_myPlayer addPeriodicTimeObserverForInterval:CMTimeMake(1.0, 1.0) queue:dispatch_get_main_queue() usingBlock:^(CMTime time) {
         float current = CMTimeGetSeconds(time);
         float total = CMTimeGetSeconds([playerItem duration]);
-        NSLog(@"当前已经播放%f--------总时长%f",current,total);
+       
+        
+        weakself.playProgress.progress.progress = current/total;
+       
    
     }];
 }
+
+#pragma mark-------playProgressDelegate
+
+
+-(void)playOrPause:(playStaus)status{
+
+
+
+    switch (status) {
+        case PLAY:
+            [self play];
+            break;
+        case PAUSE:
+            [self pause];
+            break;
+        default:
+            break;
+    }
+    
+    
+    
+
+}
+
+#pragma mark-----播放
 
 -(void)play{
 
@@ -141,13 +188,13 @@
         
         [self.myPlayer replaceCurrentItemWithPlayerItem:self.playItem];
         
-    
     }
    
     [self.myPlayer play];
     
     
 }
+#pragma mark-----暂停
 
 -(void)pause{
 
@@ -157,6 +204,16 @@
     }
     
 }
+
+#pragma mark-----全屏
+
+-(void)fullScreenBtnClick{
+
+
+
+
+}
+
 
 
 
