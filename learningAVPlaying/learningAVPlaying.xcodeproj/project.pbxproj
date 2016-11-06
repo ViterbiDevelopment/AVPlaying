@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		370830DF1DCC6A7D00356B4A /* progressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 370830DE1DCC6A7D00356B4A /* progressView.m */; };
 		377765231DC71E60006941BF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 377765221DC71E60006941BF /* main.m */; };
 		377765261DC71E60006941BF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 377765251DC71E60006941BF /* AppDelegate.m */; };
 		377765291DC71E60006941BF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 377765281DC71E60006941BF /* ViewController.m */; };
@@ -15,10 +14,11 @@
 		377765311DC71E60006941BF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3777652F1DC71E60006941BF /* LaunchScreen.storyboard */; };
 		3777653C1DC71E60006941BF /* learningAVPlayingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3777653B1DC71E60006941BF /* learningAVPlayingTests.m */; };
 		377765471DC71E60006941BF /* learningAVPlayingUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 377765461DC71E60006941BF /* learningAVPlayingUITests.m */; };
-		377765571DC71EC4006941BF /* playView.m in Sources */ = {isa = PBXBuildFile; fileRef = 377765561DC71EC4006941BF /* playView.m */; };
 		3777655A1DC72096006941BF /* a.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 377765591DC72096006941BF /* a.mp4 */; };
 		3777655D1DC7232C006941BF /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3777655C1DC7232C006941BF /* AVFoundation.framework */; };
 		37C796D61DC8361F0007D8B2 /* b.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 37C796D51DC8361F0007D8B2 /* b.mp4 */; };
+		37F500F71DCF451000EB93E6 /* playView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F500F41DCF451000EB93E6 /* playView.m */; };
+		37F500F81DCF451000EB93E6 /* progressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F500F61DCF451000EB93E6 /* progressView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,8 +39,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		370830DD1DCC6A7D00356B4A /* progressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = progressView.h; sourceTree = "<group>"; };
-		370830DE1DCC6A7D00356B4A /* progressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = progressView.m; sourceTree = "<group>"; };
 		3777651E1DC71E60006941BF /* learningAVPlaying.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = learningAVPlaying.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		377765221DC71E60006941BF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		377765241DC71E60006941BF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -56,11 +54,13 @@
 		377765421DC71E60006941BF /* learningAVPlayingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = learningAVPlayingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		377765461DC71E60006941BF /* learningAVPlayingUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = learningAVPlayingUITests.m; sourceTree = "<group>"; };
 		377765481DC71E60006941BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		377765551DC71EC4006941BF /* playView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = playView.h; sourceTree = "<group>"; };
-		377765561DC71EC4006941BF /* playView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = playView.m; sourceTree = "<group>"; };
 		377765591DC72096006941BF /* a.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = a.mp4; sourceTree = "<group>"; };
 		3777655C1DC7232C006941BF /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		37C796D51DC8361F0007D8B2 /* b.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = b.mp4; sourceTree = "<group>"; };
+		37F500F31DCF451000EB93E6 /* playView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = playView.h; path = playView/playView.h; sourceTree = "<group>"; };
+		37F500F41DCF451000EB93E6 /* playView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = playView.m; path = playView/playView.m; sourceTree = "<group>"; };
+		37F500F51DCF451000EB93E6 /* progressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = progressView.h; path = playView/progressView.h; sourceTree = "<group>"; };
+		37F500F61DCF451000EB93E6 /* progressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = progressView.m; path = playView/progressView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,10 +156,10 @@
 		377765541DC71EA8006941BF /* customAVPlaying */ = {
 			isa = PBXGroup;
 			children = (
-				377765551DC71EC4006941BF /* playView.h */,
-				377765561DC71EC4006941BF /* playView.m */,
-				370830DD1DCC6A7D00356B4A /* progressView.h */,
-				370830DE1DCC6A7D00356B4A /* progressView.m */,
+				37F500F31DCF451000EB93E6 /* playView.h */,
+				37F500F41DCF451000EB93E6 /* playView.m */,
+				37F500F51DCF451000EB93E6 /* progressView.h */,
+				37F500F61DCF451000EB93E6 /* progressView.m */,
 			);
 			path = customAVPlaying;
 			sourceTree = "<group>";
@@ -319,9 +319,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				377765291DC71E60006941BF /* ViewController.m in Sources */,
-				370830DF1DCC6A7D00356B4A /* progressView.m in Sources */,
+				37F500F81DCF451000EB93E6 /* progressView.m in Sources */,
 				377765261DC71E60006941BF /* AppDelegate.m in Sources */,
-				377765571DC71EC4006941BF /* playView.m in Sources */,
+				37F500F71DCF451000EB93E6 /* playView.m in Sources */,
 				377765231DC71E60006941BF /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
