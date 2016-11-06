@@ -7,17 +7,16 @@
 //
 
 #import "playView.h"
-
 #import "progressView.h"
+#import "playView+playControl.h"
 
 
-#import <AVFoundation/AVFoundation.h>
+
 
 
 @interface playView()<progressViewDelegate>
 
 
-@property(nonatomic,strong)AVPlayer *myPlayer;
 
 @property(nonatomic,strong)AVPlayerItem *playItem;
 
@@ -63,6 +62,7 @@
         
     
         [self setUp];
+        [self initControlGester];
         
     }
 
@@ -141,6 +141,9 @@
 - (void)addProgressObserver{
     
     AVPlayerItem *playerItem = self.myPlayer.currentItem;
+    
+
+    
     //这里设置每秒执行一次
     __weak __typeof(self) weakself = self;
     
@@ -148,7 +151,11 @@
         float current = CMTimeGetSeconds(time);
         float total = CMTimeGetSeconds([playerItem duration]);
        
-        
+//       NSLog(@"total--------%f",total);
+//       
+//       NSLog(@"current--------%f",current);
+//       
+       
         weakself.playProgress.progress.progress = current/total;
        
    
@@ -205,7 +212,7 @@
     
 }
 
-#pragma mark-----全屏
+#pragma mark-----全屏,待处理
 
 -(void)fullScreenBtnClick{
 

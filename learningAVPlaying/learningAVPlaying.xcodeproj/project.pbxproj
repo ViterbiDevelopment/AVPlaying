@@ -17,8 +17,9 @@
 		3777655A1DC72096006941BF /* a.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 377765591DC72096006941BF /* a.mp4 */; };
 		3777655D1DC7232C006941BF /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3777655C1DC7232C006941BF /* AVFoundation.framework */; };
 		37C796D61DC8361F0007D8B2 /* b.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 37C796D51DC8361F0007D8B2 /* b.mp4 */; };
-		37F500F71DCF451000EB93E6 /* playView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F500F41DCF451000EB93E6 /* playView.m */; };
-		37F500F81DCF451000EB93E6 /* progressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F500F61DCF451000EB93E6 /* progressView.m */; };
+		37F500FE1DCF45F000EB93E6 /* playView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F500FB1DCF45F000EB93E6 /* playView.m */; };
+		37F500FF1DCF45F000EB93E6 /* progressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F500FD1DCF45F000EB93E6 /* progressView.m */; };
+		37F501031DCF468800EB93E6 /* playView+playControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F501021DCF468800EB93E6 /* playView+playControl.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,10 +58,12 @@
 		377765591DC72096006941BF /* a.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = a.mp4; sourceTree = "<group>"; };
 		3777655C1DC7232C006941BF /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		37C796D51DC8361F0007D8B2 /* b.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = b.mp4; sourceTree = "<group>"; };
-		37F500F31DCF451000EB93E6 /* playView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = playView.h; path = playView/playView.h; sourceTree = "<group>"; };
-		37F500F41DCF451000EB93E6 /* playView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = playView.m; path = playView/playView.m; sourceTree = "<group>"; };
-		37F500F51DCF451000EB93E6 /* progressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = progressView.h; path = playView/progressView.h; sourceTree = "<group>"; };
-		37F500F61DCF451000EB93E6 /* progressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = progressView.m; path = playView/progressView.m; sourceTree = "<group>"; };
+		37F500FA1DCF45F000EB93E6 /* playView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = playView.h; sourceTree = "<group>"; };
+		37F500FB1DCF45F000EB93E6 /* playView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = playView.m; sourceTree = "<group>"; };
+		37F500FC1DCF45F000EB93E6 /* progressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = progressView.h; sourceTree = "<group>"; };
+		37F500FD1DCF45F000EB93E6 /* progressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = progressView.m; sourceTree = "<group>"; };
+		37F501011DCF468800EB93E6 /* playView+playControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "playView+playControl.h"; sourceTree = "<group>"; };
+		37F501021DCF468800EB93E6 /* playView+playControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "playView+playControl.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,10 +159,8 @@
 		377765541DC71EA8006941BF /* customAVPlaying */ = {
 			isa = PBXGroup;
 			children = (
-				37F500F31DCF451000EB93E6 /* playView.h */,
-				37F500F41DCF451000EB93E6 /* playView.m */,
-				37F500F51DCF451000EB93E6 /* progressView.h */,
-				37F500F61DCF451000EB93E6 /* progressView.m */,
+				37F501001DCF461B00EB93E6 /* categorys */,
+				37F500F91DCF45F000EB93E6 /* playView */,
 			);
 			path = customAVPlaying;
 			sourceTree = "<group>";
@@ -179,6 +180,26 @@
 				3777655C1DC7232C006941BF /* AVFoundation.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		37F500F91DCF45F000EB93E6 /* playView */ = {
+			isa = PBXGroup;
+			children = (
+				37F500FA1DCF45F000EB93E6 /* playView.h */,
+				37F500FB1DCF45F000EB93E6 /* playView.m */,
+				37F500FC1DCF45F000EB93E6 /* progressView.h */,
+				37F500FD1DCF45F000EB93E6 /* progressView.m */,
+			);
+			path = playView;
+			sourceTree = "<group>";
+		};
+		37F501001DCF461B00EB93E6 /* categorys */ = {
+			isa = PBXGroup;
+			children = (
+				37F501011DCF468800EB93E6 /* playView+playControl.h */,
+				37F501021DCF468800EB93E6 /* playView+playControl.m */,
+			);
+			path = categorys;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -319,10 +340,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				377765291DC71E60006941BF /* ViewController.m in Sources */,
-				37F500F81DCF451000EB93E6 /* progressView.m in Sources */,
 				377765261DC71E60006941BF /* AppDelegate.m in Sources */,
-				37F500F71DCF451000EB93E6 /* playView.m in Sources */,
+				37F501031DCF468800EB93E6 /* playView+playControl.m in Sources */,
+				37F500FE1DCF45F000EB93E6 /* playView.m in Sources */,
 				377765231DC71E60006941BF /* main.m in Sources */,
+				37F500FF1DCF45F000EB93E6 /* progressView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

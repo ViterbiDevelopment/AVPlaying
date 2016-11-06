@@ -7,8 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
+
 
 @interface playView : UIView
+
+@property(nonatomic,strong)AVPlayer *myPlayer;
 
 
 -(void)play;
