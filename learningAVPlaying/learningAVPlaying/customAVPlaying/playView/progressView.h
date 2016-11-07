@@ -27,8 +27,12 @@ typedef enum : NSUInteger {
 @interface progressView : UIView
 
 
+@property(nonatomic,strong)UISlider *progress;
 
-@property(nonatomic,strong)UIProgressView *progress;
+@property(nonatomic,strong)UIButton *playButton;
+
+@property(nonatomic,strong)UIButton *screenFullButton;
+
 
 @property(nonatomic,assign)id<progressViewDelegate> delegate;
 

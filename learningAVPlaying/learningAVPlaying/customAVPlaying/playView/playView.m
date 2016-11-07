@@ -21,7 +21,6 @@
 @property(nonatomic,strong)AVPlayerItem *playItem;
 
 
-@property(nonatomic,strong)progressView *playProgress;
 
 
 
@@ -62,6 +61,9 @@
         
     
         [self setUp];
+        
+        //初始化手势
+        
         [self initControlGester];
         
     }
@@ -143,20 +145,16 @@
     AVPlayerItem *playerItem = self.myPlayer.currentItem;
     
 
-    
     //这里设置每秒执行一次
     __weak __typeof(self) weakself = self;
     
    [_myPlayer addPeriodicTimeObserverForInterval:CMTimeMake(1.0, 1.0) queue:dispatch_get_main_queue() usingBlock:^(CMTime time) {
-        float current = CMTimeGetSeconds(time);
+        float current = CMTimeGetSeconds(playerItem.currentTime);
         float total = CMTimeGetSeconds([playerItem duration]);
+
+    
+       weakself.playProgress.progress.value = current / total;
        
-//       NSLog(@"total--------%f",total);
-//       
-//       NSLog(@"current--------%f",current);
-//       
-       
-        weakself.playProgress.progress.progress = current/total;
        
    
     }];
@@ -196,6 +194,9 @@
         [self.myPlayer replaceCurrentItemWithPlayerItem:self.playItem];
         
     }
+    
+    [self.playProgress.playButton setTitle:@"暂停" forState:UIControlStateNormal];
+    
    
     [self.myPlayer play];
     
@@ -206,7 +207,9 @@
 -(void)pause{
 
     if (self.myPlayer.rate > 0) {
-        
+
+        [self.playProgress.playButton setTitle:@"播放" forState:UIControlStateNormal];
+
         [self.myPlayer pause];
     }
     

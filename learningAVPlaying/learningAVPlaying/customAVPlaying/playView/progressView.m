@@ -9,36 +9,23 @@
 #import "progressView.h"
 
 
-@interface progressView()
-
-
-
-@property(nonatomic,strong)UIButton *playButton;
-
-@property(nonatomic,strong)UIButton *screenFullButton;
-
-
-@end
-
-
 @implementation progressView
 
 
 
--(UIProgressView *)progress{
+-(UISlider *)progress{
 
 
 
 
     if (_progress == nil) {
         
-        _progress = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar];
+   
+        _progress = [[UISlider alloc] initWithFrame:CGRectMake(45, 0, self.frame.size.width - 90, self.frame.size.height)];
         
-        _progress.frame = CGRectMake(45, self.frame.size.height/2.0, self.frame.size.width-90, self.frame.size.height);
+        _progress.value = 0.0f;
         
-        
-        _progress.progress = 1.0f;
-        
+       
     }
     
     return  _progress;
@@ -112,9 +99,6 @@
     
 }
 
-#pragma mark-------释放
-
-
 
 -(void)play:(UIButton *)sender{
     
@@ -126,14 +110,12 @@
         
         statu = PLAY;
         
-        [sender setTitle:@"暂停" forState:UIControlStateNormal];
         
     }
     else{
         statu = PAUSE;
     
-        [sender setTitle:@"播放" forState:UIControlStateNormal];
-
+      
         
     }
     
@@ -147,7 +129,6 @@
 
 }
 
-#pragma mark-------暂停
 
 
 -(void)fullBtnClcik{

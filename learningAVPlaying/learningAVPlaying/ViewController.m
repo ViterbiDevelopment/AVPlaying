@@ -14,7 +14,6 @@
 #define KSCreenH  [UIScreen mainScreen].bounds.size.height
 
 
-
 @interface ViewController ()
 
 @property (strong, nonatomic)  playView *myPlayView;
@@ -34,10 +33,6 @@
     
     [self.view addSubview:_myPlayView];
     
-
-  
-    
-
 
 }
 

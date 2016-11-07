@@ -11,6 +11,7 @@
 
 static void * VTPlayControlPropertyPlayControlGestureRecognizer;
 static void * VTControlPropertyMoveToSecond;
+static void * VTControlPropertyInfoLable;
 
 
 @interface playView (playControl)<UIGestureRecognizerDelegate>
@@ -18,6 +19,9 @@ static void * VTControlPropertyMoveToSecond;
 @property(nonatomic,assign)CGFloat moveToSecond;
 
 @property(nonatomic,strong,readonly)UIPanGestureRecognizer *controlGester;
+
+@property(nonatomic,strong)UILabel *infoShowLable;
+
 
 
 -(void)initControlGester;

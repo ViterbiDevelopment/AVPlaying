@@ -22,14 +22,14 @@
 -(void)setMoveToSecond:(CGFloat)moveToSecond{
 
 
-    objc_setAssociatedObject(self, &VTControlPropertyMoveToSecond, @(moveToSecond), OBJC_ASSOCIATION_ASSIGN);
+    objc_setAssociatedObject(self, &VTControlPropertyMoveToSecond, @(moveToSecond), OBJC_ASSOCIATION_RETAIN);
     
 }
 
 -(CGFloat)moveToSecond{
 
 
-   return [objc_getAssociatedObject(self, &VTControlPropertyMoveToSecond) floatValue];
+   return (CGFloat)[objc_getAssociatedObject(self, &VTControlPropertyMoveToSecond) floatValue];
 
 }
 
@@ -50,24 +50,137 @@
     
 }
 
+-(UILabel *)infoShowLable{
+
+     UILabel *lable = objc_getAssociatedObject(self, &VTControlPropertyInfoLable);
+    
+
+    return lable;
+
+    
+
+}
+
+-(void)setInfoShowLable:(UILabel *)infoShowLable{
+
+
+    objc_setAssociatedObject(self, &VTControlPropertyInfoLable, infoShowLable, OBJC_ASSOCIATION_RETAIN);
+    
+    
+}
+
+-(void)showInfoLableWithText:(NSString *)text{
+
+    if (self.infoShowLable == nil) {
+        
+        self.infoShowLable = [[UILabel alloc] init];
+        
+        self.infoShowLable.text = text;
+        
+        [self addSubview:self.infoShowLable];
+        
+        
+    }
+    else{
+    
+        self.infoShowLable.text = text;
+    
+        self.infoShowLable.hidden = false;
+    }
+
+   
+
+}
+
+-(void)dissMissInfoLable{
+
+
+    self.infoShowLable.hidden = true;
+    
+    
+}
+
 -(void)didRecognizedPlayControlRecognizer:(UIPanGestureRecognizer *)gester{
 
 
-    NSLog(@"--------");
+
+   
+    CGPoint point = [gester locationInView:self];
     
+
     switch (gester.state) {
         case UIGestureRecognizerStateChanged:
-          //  [self moveToTime:25];
+        {
+         float second  = [self shouldMoveSecond:self.myPlayer.currentItem distance:point.x];
+            
+            [self showInfoLableWithText:[NSString stringWithFormat:@"移动：%f秒",second]];
+            
+            
+        }
             break;
         case UIGestureRecognizerStateEnded:
             
-            [self moveToTime:200];
+        {
             
-          //  [self play];
+            [self dissMissInfoLable];
+            
+            float current =  CMTimeGetSeconds(self.myPlayer.currentTime);
+            
+        
+            float shouldMove = [self shouldMoveSecond:self.myPlayer.currentItem distance:point.x];
+            
+            float totalTime = CMTimeGetSeconds([self.myPlayer.currentItem duration]);
+            
+            if (shouldMove + current >= totalTime ) {
+              
+                
+                [self moveToTime:totalTime];
+                
+                [self pause];
+                
+                
+                break;
+            }
+            
+            float move = shouldMove + current;
+            
+            [self moveToTime:move];
+            
+        }
+            break;
+            
+         case UIGestureRecognizerStateBegan:
+            
+            self.moveToSecond = point.x;
+           
+            break;
+            
         default:
             break;
     }
     
+    
+}
+
+
+-(float)shouldMoveSecond:(AVPlayerItem *)AVItem distance:(float)pointX{
+
+    //获得视频总共时长
+    
+    float totalSecond = CMTimeGetSeconds([AVItem duration]);
+    
+    //移动比例
+    
+    float moveSecond  =  totalSecond/self.frame.size.width * (pointX - self.moveToSecond);
+    
+    NSLog(@"移动多少秒---------%f",moveSecond);
+    
+    
+    return moveSecond;
+    
+
+
+
     
 }
 

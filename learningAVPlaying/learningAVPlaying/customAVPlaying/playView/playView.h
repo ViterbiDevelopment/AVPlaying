@@ -9,10 +9,14 @@
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
 
+@class progressView;
+
 
 @interface playView : UIView
 
 @property(nonatomic,strong)AVPlayer *myPlayer;
+@property(nonatomic,strong)progressView *playProgress;
+
 
 
 -(void)play;
