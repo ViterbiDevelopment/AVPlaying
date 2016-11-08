@@ -7,8 +7,13 @@
 //
 
 #import "playView+playControl.h"
+
+#import "playView+playInfoShow.h"
+
 #import <objc/runtime.h>
 
+
+#define playScale 0.1 //手势移动比例 如果想移动手势的时候 播放慢点 将改系数调大 默认0.2
 
 @implementation playView (playControl)
 
@@ -29,7 +34,7 @@
 -(CGFloat)moveToSecond{
 
 
-   return (CGFloat)[objc_getAssociatedObject(self, &VTControlPropertyMoveToSecond) floatValue];
+   return [objc_getAssociatedObject(self, &VTControlPropertyMoveToSecond) floatValue];
 
 }
 
@@ -50,55 +55,10 @@
     
 }
 
--(UILabel *)infoShowLable{
-
-     UILabel *lable = objc_getAssociatedObject(self, &VTControlPropertyInfoLable);
-    
-
-    return lable;
-
-    
-
-}
-
--(void)setInfoShowLable:(UILabel *)infoShowLable{
 
 
-    objc_setAssociatedObject(self, &VTControlPropertyInfoLable, infoShowLable, OBJC_ASSOCIATION_RETAIN);
-    
-    
-}
-
--(void)showInfoLableWithText:(NSString *)text{
-
-    if (self.infoShowLable == nil) {
-        
-        self.infoShowLable = [[UILabel alloc] init];
-        
-        self.infoShowLable.text = text;
-        
-        [self addSubview:self.infoShowLable];
-        
-        
-    }
-    else{
-    
-        self.infoShowLable.text = text;
-    
-        self.infoShowLable.hidden = false;
-    }
-
-   
-
-}
-
--(void)dissMissInfoLable{
 
 
-    self.infoShowLable.hidden = true;
-    
-    
-}
 
 -(void)didRecognizedPlayControlRecognizer:(UIPanGestureRecognizer *)gester{
 
@@ -113,7 +73,8 @@
         {
          float second  = [self shouldMoveSecond:self.myPlayer.currentItem distance:point.x];
             
-            [self showInfoLableWithText:[NSString stringWithFormat:@"移动：%f秒",second]];
+        
+            [self showInfoLableWithTextSecond:second];
             
             
         }
@@ -122,7 +83,7 @@
             
         {
             
-            [self dissMissInfoLable];
+           [self dissMissInfoLable];
             
             float current =  CMTimeGetSeconds(self.myPlayer.currentTime);
             
@@ -133,15 +94,19 @@
             
             if (shouldMove + current >= totalTime ) {
               
-                
                 [self moveToTime:totalTime];
                 
-                [self pause];
-                
-                
+            
                 break;
             }
             
+            if (shouldMove + current <= 0) {
+                
+                [self moveToTime:0];
+           
+                break;
+            }
+         
             float move = shouldMove + current;
             
             [self moveToTime:move];
@@ -150,9 +115,11 @@
             break;
             
          case UIGestureRecognizerStateBegan:
+        {
+            [self pause];
             
             self.moveToSecond = point.x;
-           
+        }
             break;
             
         default:
@@ -169,11 +136,8 @@
     
     float totalSecond = CMTimeGetSeconds([AVItem duration]);
     
-    //移动比例
-    
-    float moveSecond  =  totalSecond/self.frame.size.width * (pointX - self.moveToSecond);
-    
-    NSLog(@"移动多少秒---------%f",moveSecond);
+   
+    float moveSecond  =  totalSecond/self.frame.size.width * (pointX - self.moveToSecond)*playScale;
     
     
     return moveSecond;
@@ -192,17 +156,39 @@
     
     CMTime Mytime = CMTimeMakeWithSeconds(time,scale);
     
+    __weak playView * weakSelf = self;
 
- 
     [self.myPlayer seekToTime:Mytime toleranceBefore:kCMTimeZero toleranceAfter:kCMTimeZero completionHandler:^(BOOL finished) {
         
+        float totalTime = CMTimeGetSeconds([weakSelf.myPlayer.currentItem duration]);
+   
+        float currentTime = CMTimeGetSeconds(weakSelf.myPlayer.currentItem.currentTime);
+        
+        if (totalTime == currentTime) {
+            
+            [weakSelf pause];
+        }
+        else{
+        
+            if (finished) {
+                
+                [weakSelf play];
+                
+            }
+            
+        }
         
         
+       
+        
+
     }];
     
     
     
 }
+
+
 
 
 @end

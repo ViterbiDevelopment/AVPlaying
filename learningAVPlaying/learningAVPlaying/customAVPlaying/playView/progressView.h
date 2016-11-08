@@ -33,6 +33,11 @@ typedef enum : NSUInteger {
 
 @property(nonatomic,strong)UIButton *screenFullButton;
 
+@property(nonatomic,strong)UILabel *currentTimeLable;
+
+@property(nonatomic,strong)UILabel *totalTimeLable;
+
+
 
 @property(nonatomic,assign)id<progressViewDelegate> delegate;
 

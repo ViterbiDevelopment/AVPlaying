@@ -21,7 +21,7 @@
     if (_progress == nil) {
         
    
-        _progress = [[UISlider alloc] initWithFrame:CGRectMake(45, 0, self.frame.size.width - 90, self.frame.size.height)];
+        _progress = [[UISlider alloc] initWithFrame:CGRectMake(90, 0, self.frame.size.width - 180, self.frame.size.height)];
         
         _progress.value = 0.0f;
         
@@ -73,6 +73,33 @@
 }
 
 
+-(UILabel *)currentTimeLable{
+
+    if (_currentTimeLable == nil) {
+        
+        _currentTimeLable = [self createLableWithFrame:CGRectMake(40, 0, 45, 40)];
+        
+    }
+    
+    return _currentTimeLable;
+
+
+}
+
+-(UILabel *)totalTimeLable{
+
+
+
+    if (_totalTimeLable == nil) {
+        
+        _totalTimeLable = [self createLableWithFrame:CGRectMake(self.frame.size.width - 45 - 40, 0, 45, 40)];
+    }
+    
+    return _totalTimeLable;
+
+}
+
+
 -(instancetype)initWithFrame:(CGRect)frame{
 
 
@@ -81,17 +108,19 @@
     
     if (self = [super initWithFrame:frame]) {
         
+        self.backgroundColor = [UIColor blueColor];
         
-      
         [self addSubview:self.progress];
+        
+        [self addSubview:self.currentTimeLable];
+        
+        [self addSubview:self.totalTimeLable];
         
         [self addSubview:self.playButton];
         
         [self addSubview:self.screenFullButton];
         
-    
-       
-        
+           
     }
     
     return self;
@@ -144,6 +173,25 @@
 
 }
 
+
+
+-(UILabel *)createLableWithFrame:(CGRect)frame{
+
+    UILabel * lable = [[UILabel alloc] initWithFrame:frame];
+    
+    lable.font = [UIFont systemFontOfSize:12];
+    
+    lable.textAlignment = NSTextAlignmentCenter;
+    
+    lable.text = @"0:0";
+    
+    
+    lable.textColor = [UIColor whiteColor];
+
+    return lable;
+
+
+}
 
 
 @end

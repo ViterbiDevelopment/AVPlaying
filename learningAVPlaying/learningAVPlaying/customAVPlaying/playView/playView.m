@@ -9,8 +9,8 @@
 #import "playView.h"
 #import "progressView.h"
 #import "playView+playControl.h"
-
-
+#import "playView+showHMSecond.h"
+#import "playView+slidePlayControl.h"
 
 
 
@@ -39,21 +39,6 @@
 
 
 
--(instancetype)initWithCoder:(NSCoder *)aDecoder{
-
-
-    
-    if (self = [super initWithCoder:aDecoder]) {
-        
-#pragma mark-----约束的话  要设置frame 真是奇怪
-        self.frame = CGRectMake(0, 0, 375, 275);
-        
-        [self setUp];
-        
-    }
-    
-    return self;
-}
 
 -(instancetype)initWithFrame:(CGRect)frame{
 
@@ -62,9 +47,12 @@
     
         [self setUp];
         
-        //初始化手势
+        //初始化控制手势
         
         [self initControlGester];
+        
+        //添加进度条控制
+        [self addSlidePlayControl];
         
     }
 
@@ -123,8 +111,7 @@
     
     _playProgress = [[progressView alloc] initWithFrame:CGRectMake(0, self.frame.size.height - 40, self.frame.size.width, 40)];
     
-    _playProgress.backgroundColor = [UIColor redColor];
-    
+   
     _playProgress.delegate = self;
     
     
@@ -149,8 +136,18 @@
     __weak __typeof(self) weakself = self;
     
    [_myPlayer addPeriodicTimeObserverForInterval:CMTimeMake(1.0, 1.0) queue:dispatch_get_main_queue() usingBlock:^(CMTime time) {
+       
         float current = CMTimeGetSeconds(playerItem.currentTime);
         float total = CMTimeGetSeconds([playerItem duration]);
+       
+       NSString * currentHMSString = [weakself showHMAndSecondString:current];
+       
+       NSString * totalHMSString = [weakself showHMAndSecondString:total];
+       
+       
+       weakself.playProgress.currentTimeLable.text = currentHMSString;
+       
+       weakself.playProgress.totalTimeLable.text = totalHMSString;
 
     
        weakself.playProgress.progress.value = current / total;
