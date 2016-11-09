@@ -20,7 +20,6 @@ typedef enum : NSUInteger {
 
 -(void)playOrPause:(playStaus)status;
 
--(void)fullScreenBtnClick;
 
 @end
 

@@ -23,6 +23,7 @@
 		37F500FE1DCF45F000EB93E6 /* playView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F500FB1DCF45F000EB93E6 /* playView.m */; };
 		37F500FF1DCF45F000EB93E6 /* progressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F500FD1DCF45F000EB93E6 /* progressView.m */; };
 		37F501031DCF468800EB93E6 /* playView+playControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F501021DCF468800EB93E6 /* playView+playControl.m */; };
+		F4F87A562B4AEB8B54598129 /* libPods-learningAVPlaying.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DF2D95CEA66B3E30D2AA0E8C /* libPods-learningAVPlaying.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1150460C1BED7A8FB3447378 /* Pods-learningAVPlaying.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-learningAVPlaying.debug.xcconfig"; path = "Pods/Target Support Files/Pods-learningAVPlaying/Pods-learningAVPlaying.debug.xcconfig"; sourceTree = "<group>"; };
 		3777651E1DC71E60006941BF /* learningAVPlaying.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = learningAVPlaying.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		377765221DC71E60006941BF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		377765241DC71E60006941BF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -73,6 +75,8 @@
 		37F500FD1DCF45F000EB93E6 /* progressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = progressView.m; sourceTree = "<group>"; };
 		37F501011DCF468800EB93E6 /* playView+playControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "playView+playControl.h"; sourceTree = "<group>"; };
 		37F501021DCF468800EB93E6 /* playView+playControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "playView+playControl.m"; sourceTree = "<group>"; };
+		B392A42543F5D71AA222456F /* Pods-learningAVPlaying.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-learningAVPlaying.release.xcconfig"; path = "Pods/Target Support Files/Pods-learningAVPlaying/Pods-learningAVPlaying.release.xcconfig"; sourceTree = "<group>"; };
+		DF2D95CEA66B3E30D2AA0E8C /* libPods-learningAVPlaying.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-learningAVPlaying.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +85,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3777655D1DC7232C006941BF /* AVFoundation.framework in Frameworks */,
+				F4F87A562B4AEB8B54598129 /* libPods-learningAVPlaying.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,6 +114,7 @@
 				377765451DC71E60006941BF /* learningAVPlayingUITests */,
 				3777651F1DC71E60006941BF /* Products */,
 				3777655B1DC7232B006941BF /* Frameworks */,
+				F7BCA6E49370592160DC11E6 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -187,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				3777655C1DC7232C006941BF /* AVFoundation.framework */,
+				DF2D95CEA66B3E30D2AA0E8C /* libPods-learningAVPlaying.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -217,6 +224,15 @@
 			path = categorys;
 			sourceTree = "<group>";
 		};
+		F7BCA6E49370592160DC11E6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1150460C1BED7A8FB3447378 /* Pods-learningAVPlaying.debug.xcconfig */,
+				B392A42543F5D71AA222456F /* Pods-learningAVPlaying.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -224,9 +240,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3777654B1DC71E60006941BF /* Build configuration list for PBXNativeTarget "learningAVPlaying" */;
 			buildPhases = (
+				84E9D29ABBC85DFA88B6C712 /* [CP] Check Pods Manifest.lock */,
 				3777651A1DC71E60006941BF /* Sources */,
 				3777651B1DC71E60006941BF /* Frameworks */,
 				3777651C1DC71E60006941BF /* Resources */,
+				8905EC815059EDE24961169C /* [CP] Embed Pods Frameworks */,
+				F8FCF48510AF53E75B8048BA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -348,6 +367,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		84E9D29ABBC85DFA88B6C712 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		8905EC815059EDE24961169C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-learningAVPlaying/Pods-learningAVPlaying-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F8FCF48510AF53E75B8048BA /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-learningAVPlaying/Pods-learningAVPlaying-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3777651A1DC71E60006941BF /* Sources */ = {
@@ -501,9 +568,16 @@
 		};
 		3777654C1DC71E60006941BF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1150460C1BED7A8FB3447378 /* Pods-learningAVPlaying.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 29F87GM9ZX;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"${SRCROOT}/**",
+					"\"${PODS_ROOT}/Headers/Public/Masonry\"",
+				);
 				INFOPLIST_FILE = learningAVPlaying/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = wangchao.learningAVPlaying;
@@ -513,9 +587,16 @@
 		};
 		3777654D1DC71E60006941BF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B392A42543F5D71AA222456F /* Pods-learningAVPlaying.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 29F87GM9ZX;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"${SRCROOT}/**",
+					"\"${PODS_ROOT}/Headers/Public/Masonry\"",
+				);
 				INFOPLIST_FILE = learningAVPlaying/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = wangchao.learningAVPlaying;

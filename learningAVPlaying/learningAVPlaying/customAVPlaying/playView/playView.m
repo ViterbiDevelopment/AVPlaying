@@ -11,6 +11,7 @@
 #import "playView+playControl.h"
 #import "playView+showHMSecond.h"
 #import "playView+slidePlayControl.h"
+#import "Masonry.h"
 
 
 
@@ -19,9 +20,6 @@
 
 
 @property(nonatomic,strong)AVPlayerItem *playItem;
-
-
-
 
 
 @end
@@ -46,6 +44,9 @@
         
     
         [self setUp];
+        
+        
+    
         
         //初始化控制手势
         
@@ -98,24 +99,37 @@
 
 
     
-    AVPlayerLayer *playerLayer = [AVPlayerLayer playerLayerWithPlayer:self.myPlayer];
+    _playerLayer = [AVPlayerLayer playerLayerWithPlayer:self.myPlayer];
     
-   
-    playerLayer.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+    _playerLayer.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+  
+    _playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
+
+    [self.layer addSublayer:_playerLayer];
     
-    playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
+
     
     
-    [self.layer addSublayer:playerLayer];
     
-    
-    _playProgress = [[progressView alloc] initWithFrame:CGRectMake(0, self.frame.size.height - 40, self.frame.size.width, 40)];
-    
-   
+    _playProgress = [[progressView alloc] initWithFrame:CGRectZero];
+
     _playProgress.delegate = self;
-    
-    
+
     [self addSubview:_playProgress];
+    
+    [_playProgress mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.size.height.mas_equalTo(40);
+        
+        make.bottom.equalTo(self).with.offset(0);
+        make.right.equalTo(self).with.offset(0);
+        
+        make.left.equalTo(self).with.offset(0);
+        
+    }];
+    
+    
+    
     
     
     [self addProgressObserver];
@@ -212,14 +226,7 @@
     
 }
 
-#pragma mark-----全屏,待处理
 
--(void)fullScreenBtnClick{
-
-
-
-
-}
 
 
 

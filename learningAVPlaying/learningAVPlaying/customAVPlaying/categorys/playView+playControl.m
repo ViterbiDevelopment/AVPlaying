@@ -96,7 +96,6 @@
               
                 [self moveToTime:totalTime];
                 
-            
                 break;
             }
             

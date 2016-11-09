@@ -7,6 +7,8 @@
 //
 
 #import "progressView.h"
+#import "Masonry.h"
+
 
 
 @implementation progressView
@@ -61,12 +63,9 @@
         _screenFullButton = [[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width-40, 0, 40, self.frame.size.height)];
         [_screenFullButton setTitle:@"全屏" forState:UIControlStateNormal];
         
-        [_screenFullButton addTarget:self action:@selector(fullBtnClcik) forControlEvents:UIControlEventTouchUpInside];
-        
-        
         _screenFullButton.titleLabel.font = [UIFont systemFontOfSize:13];
      
-        
+
     }
     return _screenFullButton;
 
@@ -110,15 +109,83 @@
         
         self.backgroundColor = [UIColor blueColor];
         
-        [self addSubview:self.progress];
+        [self addSubview:self.playButton];
+        
+        [self.playButton mas_makeConstraints:^(MASConstraintMaker *make) {
+           
+            make.top.equalTo(self).with.offset(0);
+            make.left.equalTo(self).with.offset(0);
+            make.bottom.equalTo(self).with.offset(0);
+            
+            make.size.width.mas_equalTo(40);
+            
+            
+        }];
+        
+        
         
         [self addSubview:self.currentTimeLable];
         
+        [self.currentTimeLable mas_makeConstraints:^(MASConstraintMaker *make) {
+           
+            make.top.equalTo(self).with.offset(0);
+            
+            make.left.equalTo(self.playButton.mas_right).with.offset(0);
+            
+            make.bottom.equalTo(self).offset(0);
+            
+            make.size.width.mas_equalTo(45);
+            
+        }];
+        [self addSubview:self.progress];
+        
+       
+        [self.progress mas_makeConstraints:^(MASConstraintMaker *make) {
+           
+            
+            make.top.equalTo(self).with.offset(0);
+            
+            make.left.equalTo(self.currentTimeLable.mas_right).with.offset(5);
+            
+            make.bottom.equalTo(self).with.offset(0);
+            
+           
+            
+        }];
+
         [self addSubview:self.totalTimeLable];
         
-        [self addSubview:self.playButton];
+        [self.totalTimeLable mas_makeConstraints:^(MASConstraintMaker *make) {
+           
+            make.top.equalTo(self).with.offset(0);
+            
+            make.left.equalTo(self.progress.mas_right).with.offset(5);
+            make.bottom.equalTo(self).with.offset(0);
+            
+            make.size.width.mas_equalTo(45);
+            
+        }];
+        
         
         [self addSubview:self.screenFullButton];
+        
+    
+        
+        [self.screenFullButton mas_makeConstraints:^(MASConstraintMaker *make) {
+           
+            make.top.equalTo(self).with.offset(0);
+            
+            make.left.equalTo(self.totalTimeLable.mas_right).with.offset(0);
+            
+            make.right.equalTo(self).with.offset(0);
+            
+            make.bottom.equalTo(self).with.offset(0);
+            
+            
+        }];
+        
+       
+    
         
            
     }
@@ -160,18 +227,6 @@
 
 
 
--(void)fullBtnClcik{
-
-
-
-    if ([_delegate respondsToSelector:@selector(fullScreenBtnClick)]) {
-        
-        [_delegate fullScreenBtnClick];
-        
-        
-    }
-
-}
 
 
 

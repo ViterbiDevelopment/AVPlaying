@@ -14,9 +14,11 @@
 
 @interface playView : UIView
 
-@property(nonatomic,strong)AVPlayer *myPlayer;
-@property(nonatomic,strong)progressView *playProgress;
+@property(nonatomic,strong,nonnull)AVPlayer *myPlayer;
 
+@property(nonatomic,strong,nonnull)progressView *playProgress;
+
+@property(nonnull,strong)AVPlayerLayer *playerLayer;
 
 
 -(void)play;
