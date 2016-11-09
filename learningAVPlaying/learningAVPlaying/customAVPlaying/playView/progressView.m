@@ -23,7 +23,7 @@
     if (_progress == nil) {
         
    
-        _progress = [[UISlider alloc] initWithFrame:CGRectMake(90, 0, self.frame.size.width - 180, self.frame.size.height)];
+        _progress = [[UISlider alloc] initWithFrame:CGRectZero];
         
         _progress.value = 0.0f;
         
@@ -40,7 +40,7 @@
 
     if (_playButton == nil) {
         
-        _playButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, self.frame.size.height)];
+        _playButton = [[UIButton alloc] initWithFrame:CGRectZero];
         [_playButton setTitle:@"播放" forState:UIControlStateNormal];
         
         [_playButton addTarget:self action:@selector(play:) forControlEvents:UIControlEventTouchUpInside];
@@ -60,7 +60,7 @@
 
     if (_screenFullButton == nil) {
         
-        _screenFullButton = [[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width-40, 0, 40, self.frame.size.height)];
+        _screenFullButton = [[UIButton alloc] initWithFrame:CGRectZero];
         [_screenFullButton setTitle:@"全屏" forState:UIControlStateNormal];
         
         _screenFullButton.titleLabel.font = [UIFont systemFontOfSize:13];
@@ -76,7 +76,7 @@
 
     if (_currentTimeLable == nil) {
         
-        _currentTimeLable = [self createLableWithFrame:CGRectMake(40, 0, 45, 40)];
+        _currentTimeLable = [self createLableWithFrame:CGRectZero];
         
     }
     
@@ -91,7 +91,7 @@
 
     if (_totalTimeLable == nil) {
         
-        _totalTimeLable = [self createLableWithFrame:CGRectMake(self.frame.size.width - 45 - 40, 0, 45, 40)];
+        _totalTimeLable = [self createLableWithFrame:CGRectZero];
     }
     
     return _totalTimeLable;

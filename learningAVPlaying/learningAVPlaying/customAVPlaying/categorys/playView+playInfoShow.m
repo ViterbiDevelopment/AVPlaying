@@ -8,6 +8,7 @@
 
 #import "playView+playInfoShow.h"
 #import "playView+showHMSecond.h"
+#import "Masonry.h"
 
 
 #import <objc/runtime.h>
@@ -50,11 +51,6 @@ static void * VTControlPropertyInfoLable;
     if (self.infoLable == nil) {
         
         self.infoLable = [[UILabel alloc] init];
-        
-        self.infoLable.bounds = CGRectMake(0, 0, 140, 40);
-        
-        self.infoLable.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height/2.0);
-        
         self.infoLable.textAlignment = NSTextAlignmentCenter;
         
         self.infoLable.layer.cornerRadius = 10;
@@ -70,6 +66,20 @@ static void * VTControlPropertyInfoLable;
         self.infoLable.text = info;
         
         [self addSubview:self.infoLable];
+        
+        
+        
+        [self.infoLable mas_makeConstraints:^(MASConstraintMaker *make) {
+           
+            
+            make.size.mas_equalTo(CGSizeMake(140, 40));
+            
+            make.center.equalTo(self);
+            
+        }];
+        
+        
+        
         
         
     }
