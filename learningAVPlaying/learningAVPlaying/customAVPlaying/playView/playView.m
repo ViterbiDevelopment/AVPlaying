@@ -102,16 +102,15 @@
     _playerLayer = [AVPlayerLayer playerLayerWithPlayer:self.myPlayer];
     
     _playerLayer.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
-  
-    _playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
+   
+    
+  _playerLayer.videoGravity = AVLayerVideoGravityResize;
 
     [self.layer addSublayer:_playerLayer];
     
 
-    
-    
-    
-    _playProgress = [[progressView alloc] initWithFrame:CGRectZero];
+
+    _playProgress = [[progressView alloc] initWithFrame:CGRectMake(0, self.frame.size.height - 40, self.frame.size.width, 40)];
 
     _playProgress.delegate = self;
 

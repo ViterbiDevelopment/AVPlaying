@@ -36,7 +36,7 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    _myPlayView = [[playView alloc] initWithFrame:CGRectMake(0, 0, KSCreenW, self.view.frame.size.height-300)];
+    _myPlayView = [[playView alloc] initWithFrame:CGRectMake(0, 0, KSCreenW, KSCreenH-300)];
     
     
     [self.view addSubview:_myPlayView];
@@ -90,7 +90,7 @@
         [UIView animateWithDuration:0.5 animations:^{
        
             _myPlayView.frame = CGRectMake(0, 0, weakSelf.view.frame.size.width, weakSelf.view.frame.size.height-300);
-            _myPlayView.playerLayer.frame = CGRectMake(0, 0, _myPlayView.frame.size.width, _myPlayView.frame.size.height);
+            _myPlayView.playerLayer.frame = CGRectMake(0, 0, weakSelf.view.frame.size.width, weakSelf.view.frame.size.height-300);
             
             
         } completion:^(BOOL finished) {
