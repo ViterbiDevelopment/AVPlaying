@@ -68,7 +68,6 @@ static void * VTControlPropertyInfoLable;
         [self addSubview:self.infoLable];
         
         
-        
         [self.infoLable mas_makeConstraints:^(MASConstraintMaker *make) {
            
             

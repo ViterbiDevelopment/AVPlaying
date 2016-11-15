@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
 
+
 @class progressView;
 
 
@@ -18,7 +19,10 @@
 
 @property(nonatomic,strong,nonnull)progressView *playProgress;
 
-@property(nonnull,strong)AVPlayerLayer *playerLayer;
+@property(nonatomic,strong,nonnull)AVPlayerLayer *playerLayer;
+
+
+-(instancetype)initWithFrameAndUrl:(CGRect)frame url:(NSString *)urlString;
 
 
 -(void)play;

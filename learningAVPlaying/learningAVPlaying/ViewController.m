@@ -36,7 +36,11 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    _myPlayView = [[playView alloc] initWithFrame:CGRectMake(0, 0, KSCreenW, KSCreenH-300)];
+//    _myPlayView = [[playView alloc] initWithFrame:CGRectMake(0, 0, KSCreenW, KSCreenH-300)];
+
+    //http://v.jxvdy.com/sendfile/w5bgP3A8JgiQQo5l0hvoNGE2H16WbN09X-ONHPq3P3C1BISgf7C-qVs6_c8oaw3zKScO78I--b0BGFBRxlpw13sf2e54QA
+    
+    _myPlayView = [[playView alloc] initWithFrameAndUrl:CGRectMake(0, 0, KSCreenW, KSCreenH-300) url:nil];
     
     
     [self.view addSubview:_myPlayView];
@@ -67,8 +71,7 @@
             _myPlayView.frame = self.view.bounds;
             
             _myPlayView.playerLayer.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
-            
-
+        
             
         } completion:^(BOOL finished) {
             

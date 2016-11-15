@@ -43,6 +43,8 @@
         _playButton = [[UIButton alloc] initWithFrame:CGRectZero];
         [_playButton setTitle:@"播放" forState:UIControlStateNormal];
         
+        _playButton.enabled = false;
+        
         [_playButton addTarget:self action:@selector(play:) forControlEvents:UIControlEventTouchUpInside];
         
         _playButton.titleLabel.font = [UIFont systemFontOfSize:13];
