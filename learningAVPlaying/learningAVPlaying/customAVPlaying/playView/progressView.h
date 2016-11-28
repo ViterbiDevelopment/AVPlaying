@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "progressSlideView.h"
+
 
 typedef enum : NSUInteger {
     PLAY = 1,
@@ -26,7 +28,8 @@ typedef enum : NSUInteger {
 @interface progressView : UIView
 
 
-@property(nonatomic,strong)UISlider *progress;
+@property(nonatomic,strong)progressSlideView *sliderView;
+
 
 @property(nonatomic,strong)UIButton *playButton;
 
@@ -36,6 +39,9 @@ typedef enum : NSUInteger {
 
 @property(nonatomic,strong)UILabel *totalTimeLable;
 
+@property(nonatomic,copy)NSString *progressValue;
+
+@property(nonatomic,copy)NSString *cacheProgressValue;
 
 
 @property(nonatomic,assign)id<progressViewDelegate> delegate;

@@ -14,21 +14,26 @@
 
 #import "playView+showHMSecond.h"
 
+#import "progressSlideView.h"
+
 
 
 @implementation playView (slidePlayControl)
 
 -(void)addSlidePlayControl{
 
+    
 
-    progressView * SlideProgress = self.playProgress;
+    progressView *progress = self.playProgress;
     
-    [SlideProgress.progress addTarget:self action:@selector(sildeTouchDown:) forControlEvents:UIControlEventTouchDown];
+    progressSlideView *PsliderView = progress.sliderView;
     
+    UISlider *slider = PsliderView.sliderView;
     
-    [SlideProgress.progress addTarget:self action:@selector(slideValueChange:) forControlEvents:UIControlEventValueChanged];
-    
-    [SlideProgress.progress addTarget:self action:@selector(sliderTouchOut:) forControlEvents:UIControlEventTouchUpInside];
+
+    [slider  addTarget:self action:@selector(sildeTouchDown:) forControlEvents:UIControlEventTouchDown];
+    [slider addTarget:self action:@selector(slideValueChange:) forControlEvents:UIControlEventValueChanged];
+    [slider addTarget:self action:@selector(sliderTouchOut:) forControlEvents:UIControlEventTouchUpInside];
   
     
 

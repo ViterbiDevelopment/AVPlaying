@@ -13,26 +13,18 @@
 
 @implementation progressView
 
+-(progressSlideView *)sliderView{
 
 
--(UISlider *)progress{
-
-
-
-
-    if (_progress == nil) {
+    if (_sliderView == nil) {
         
-   
-        _progress = [[UISlider alloc] initWithFrame:CGRectZero];
-        
-        _progress.value = 0.0f;
-        
-       
+        _sliderView = [[progressSlideView alloc] initWithFrame:CGRectZero];
     }
-    
-    return  _progress;
-    
+
+    return _sliderView;
+
 }
+
 
 -(UIButton *)playButton{
 
@@ -111,6 +103,8 @@
         
         self.backgroundColor = [UIColor blueColor];
         
+        
+        
         [self addSubview:self.playButton];
         
         [self.playButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -123,7 +117,6 @@
             
             
         }];
-        
         
         
         [self addSubview:self.currentTimeLable];
@@ -139,21 +132,26 @@
             make.size.width.mas_equalTo(45);
             
         }];
-        [self addSubview:self.progress];
         
-       
-        [self.progress mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        [self addSubview:self.sliderView];
+        
+        [_sliderView mas_makeConstraints:^(MASConstraintMaker *make) {
            
+            make.centerX.equalTo(self);
+            
             
             make.top.equalTo(self).with.offset(0);
+            
             
             make.left.equalTo(self.currentTimeLable.mas_right).with.offset(5);
             
             make.bottom.equalTo(self).with.offset(0);
-            
-           
-            
+
         }];
+        
+
+        
 
         [self addSubview:self.totalTimeLable];
         
@@ -161,7 +159,7 @@
            
             make.top.equalTo(self).with.offset(0);
             
-            make.left.equalTo(self.progress.mas_right).with.offset(5);
+            make.left.equalTo(self.sliderView.mas_right).with.offset(5);
             make.bottom.equalTo(self).with.offset(0);
             
             make.size.width.mas_equalTo(45);
@@ -170,8 +168,6 @@
         
         
         [self addSubview:self.screenFullButton];
-        
-    
         
         [self.screenFullButton mas_makeConstraints:^(MASConstraintMaker *make) {
            
@@ -186,7 +182,10 @@
             
         }];
         
-       
+        //添加progressValue监听状态，实时更新progressSlideView
+        [self addObserver:self forKeyPath:@"progressValue" options:NSKeyValueObservingOptionNew context:nil];
+        //cacheProgressValue
+        [self addObserver:self forKeyPath:@"cacheProgressValue" options:NSKeyValueObservingOptionNew context:nil];
     
         
            
@@ -229,9 +228,6 @@
 
 
 
-
-
-
 -(UILabel *)createLableWithFrame:(CGRect)frame{
 
     UILabel * lable = [[UILabel alloc] initWithFrame:frame];
@@ -250,5 +246,47 @@
 
 }
 
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
+
+
+    if ([keyPath isEqualToString:@"progressValue"]) {
+        
+        NSString * stringOfNew = change[@"new"];
+        
+        double doubleOfNew =  [stringOfNew doubleValue];
+        
+        
+        _sliderView.sliderView.value = doubleOfNew;
+        
+       
+        
+        
+    }
+    if ([keyPath isEqualToString:@"cacheProgressValue"]) {
+        NSString * stringOfNew = change[@"new"];
+        
+        double doubleOfNew =  [stringOfNew doubleValue];
+        
+        _sliderView.cacheSliderView.progress = doubleOfNew;
+        
+       
+        
+        
+    }
+
+    
+
+}
+
+-(void)dealloc{
+
+
+   [self removeObserver:self forKeyPath:@"progressValue"];
+    [self removeObserver:self forKeyPath:@"cacheProgressValue"];
+    
+ 
+    
+
+}
 
 @end

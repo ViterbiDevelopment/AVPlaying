@@ -10,4 +10,9 @@
 
 @interface progressSlideView : UIView
 
+@property(nonatomic,strong)UISlider *sliderView;
+
+@property(nonatomic,strong)UIProgressView * cacheSliderView;
+
+
 @end

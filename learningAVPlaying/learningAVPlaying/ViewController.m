@@ -37,10 +37,10 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
 //    _myPlayView = [[playView alloc] initWithFrame:CGRectMake(0, 0, KSCreenW, KSCreenH-300)];
-
-    //http://v.jxvdy.com/sendfile/w5bgP3A8JgiQQo5l0hvoNGE2H16WbN09X-ONHPq3P3C1BISgf7C-qVs6_c8oaw3zKScO78I--b0BGFBRxlpw13sf2e54QA
     
-    _myPlayView = [[playView alloc] initWithFrameAndUrl:CGRectMake(0, 0, KSCreenW, KSCreenH-300) url:nil];
+    NSString * ulrString = @"http://v.jxvdy.com/sendfile/w5bgP3A8JgiQQo5l0hvoNGE2H16WbN09X-ONHPq3P3C1BISgf7C-qVs6_c8oaw3zKScO78I--b0BGFBRxlpw13sf2e54QA";
+    
+    _myPlayView = [[playView alloc] initWithFrameAndUrl:CGRectMake(0, 0, KSCreenW, KSCreenH-300) url:ulrString];
     
     
     [self.view addSubview:_myPlayView];

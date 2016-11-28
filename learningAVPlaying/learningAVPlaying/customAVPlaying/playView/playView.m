@@ -20,7 +20,7 @@
 @property(nonatomic,strong)AVPlayerItem *playItem;
 
 
-@property(nonatomic,strong)NSString * urlString;
+@property(nonatomic,strong,nonnull)NSString * urlString;
 
 @end
 
@@ -158,7 +158,9 @@
     
     
     [self.myPlayer.currentItem addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:nil];
-   
+    
+    [self.myPlayer.currentItem addObserver:self forKeyPath:@"loadedTimeRanges" options:NSKeyValueObservingOptionNew context:nil];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moveDidPlayEnd:) name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
     
 
@@ -190,9 +192,9 @@
        
        weakself.playProgress.totalTimeLable.text = totalHMSString;
 
-    
-       weakself.playProgress.progress.value = current / total;
+       NSString *progressString = [NSString stringWithFormat:@"%.6f",current/total];
        
+       weakself.playProgress.progressValue = progressString;
        
    
     }];
@@ -210,6 +212,8 @@
         
         if ([itme status] == AVPlayerStatusReadyToPlay) {
             
+            
+            
             float total = CMTimeGetSeconds([itme duration]);
             
             NSString * totalString = [weakSelf showHMAndSecondString:total];
@@ -217,22 +221,35 @@
 
             weakSelf.playProgress.playButton.enabled = true;
             
-            
-            
         }
         
         
     }
-    if ([keyPath isEqualToString:@""]) {
+    if ([keyPath isEqualToString:@"loadedTimeRanges"]) {
         
+        NSTimeInterval timeInterval = [self availableDuration];// 计算缓冲进度
+      //  NSLog(@"Time Interval:%f",timeInterval);
+        CMTime duration = _playItem.duration;
+        CGFloat totalDuration = CMTimeGetSeconds(duration);
+    
+        weakSelf.playProgress.cacheProgressValue = [NSString stringWithFormat:@"%.6f",timeInterval/totalDuration];
         
+
     }
 
 
 
 
 }
-
+- (NSTimeInterval)availableDuration {
+    
+    NSArray *loadedTimeRanges = [[self.myPlayer currentItem] loadedTimeRanges];
+    CMTimeRange timeRange = [loadedTimeRanges.firstObject CMTimeRangeValue];// 获取缓冲区域
+    float startSeconds = CMTimeGetSeconds(timeRange.start);
+    float durationSeconds = CMTimeGetSeconds(timeRange.duration);
+    NSTimeInterval result = startSeconds + durationSeconds;// 计算缓冲总进度
+    return result;
+}
 
 #pragma mark-------moveDidPlayEnd
 
@@ -243,9 +260,7 @@
     //从零开始
     [self pause];
     [self moveToTime:0];
-
-    self.playProgress.progress.value = 0;
-    
+ 
     self.playProgress.currentTimeLable.text = @"00:00";
     
     
