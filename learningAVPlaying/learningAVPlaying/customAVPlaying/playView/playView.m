@@ -12,6 +12,8 @@
 #import "playView+showHMSecond.h"
 #import "playView+slidePlayControl.h"
 #import "Masonry.h"
+#import "MBProgressHUD.h"
+
 
 
 
@@ -19,8 +21,13 @@
 
 @property(nonatomic,strong)AVPlayerItem *playItem;
 
+@property(nonatomic,strong)MBProgressHUD *hud;
 
 @property(nonatomic,strong,nonnull)NSString * urlString;
+
+@property(nonatomic,assign)double currentCacheTime;
+
+@property(nonatomic,assign)double currentPlayTime;
 
 @end
 
@@ -41,6 +48,10 @@
 
 
     if (self = [super initWithFrame:frame]) {
+        
+    
+        
+        self.backgroundColor = [UIColor blackColor];
         
         _urlString = urlString;
         
@@ -157,13 +168,18 @@
     
     
     
+    _hud = [MBProgressHUD showHUDAddedTo:self animated:true];
+    
+    _hud.label.text = @"正在加载....";
+    
+    
+    
     [self.myPlayer.currentItem addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:nil];
     
     [self.myPlayer.currentItem addObserver:self forKeyPath:@"loadedTimeRanges" options:NSKeyValueObservingOptionNew context:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moveDidPlayEnd:) name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
     
-
     
 }
 
@@ -183,6 +199,21 @@
        
         float current = CMTimeGetSeconds(playerItem.currentTime);
         float total = CMTimeGetSeconds([playerItem duration]);
+       
+       weakself.currentPlayTime = current;
+       
+       NSLog(@"000000000000---------%f",current);
+       NSLog(@"current-----%f-------cache------%f",current,weakself.currentCacheTime);
+       
+       if (weakself.currentCacheTime - current <= 1 && weakself.currentCacheTime != 0.000000) {
+           
+           NSLog(@"检测卡顿,暂停播放");
+           
+           [weakself pause];
+           
+         //  return ;
+           
+       }
        
        NSString * currentHMSString = [weakself showHMAndSecondString:current];
        
@@ -212,7 +243,7 @@
         
         if ([itme status] == AVPlayerStatusReadyToPlay) {
             
-            
+            [_hud hideAnimated:true];
             
             float total = CMTimeGetSeconds([itme duration]);
             
@@ -221,6 +252,12 @@
 
             weakSelf.playProgress.playButton.enabled = true;
             
+        }else{
+        
+            [_hud hideAnimated:true];
+            
+            NSLog(@"网络有问题");
+        
         }
         
         
@@ -228,14 +265,21 @@
     if ([keyPath isEqualToString:@"loadedTimeRanges"]) {
         
         NSTimeInterval timeInterval = [self availableDuration];// 计算缓冲进度
-      //  NSLog(@"Time Interval:%f",timeInterval);
+        
+        _currentCacheTime = timeInterval;
+        
         CMTime duration = _playItem.duration;
         CGFloat totalDuration = CMTimeGetSeconds(duration);
     
         weakSelf.playProgress.cacheProgressValue = [NSString stringWithFormat:@"%.6f",timeInterval/totalDuration];
+        if (_currentCacheTime - _currentCacheTime > 1 && _myPlayer.rate == 0 ) {
+            
+            [self play];
+            
+        }
         
-
     }
+    
 
 
 
@@ -268,6 +312,7 @@
 
 
 }
+
 
 
 #pragma mark-------playProgressDelegate

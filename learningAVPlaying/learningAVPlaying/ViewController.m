@@ -42,6 +42,7 @@
     
     _myPlayView = [[playView alloc] initWithFrameAndUrl:CGRectMake(0, 0, KSCreenW, KSCreenH-300) url:ulrString];
     
+  //  _myPlayView.backgroundColor = uicolor.red
     
     [self.view addSubview:_myPlayView];
     

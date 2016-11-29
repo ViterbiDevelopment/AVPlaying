@@ -54,7 +54,7 @@
         
         [self addSubview:self.cacheSliderView];
         
-        self.cacheSliderView.progress = 1;
+     //   self.cacheSliderView.progress = 1;
         
         [self.cacheSliderView mas_makeConstraints:^(MASConstraintMaker *make) {
 
