@@ -14,13 +14,11 @@
 		377765311DC71E60006941BF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3777652F1DC71E60006941BF /* LaunchScreen.storyboard */; };
 		3777653C1DC71E60006941BF /* learningAVPlayingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3777653B1DC71E60006941BF /* learningAVPlayingTests.m */; };
 		377765471DC71E60006941BF /* learningAVPlayingUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 377765461DC71E60006941BF /* learningAVPlayingUITests.m */; };
-		3777655A1DC72096006941BF /* a.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 377765591DC72096006941BF /* a.mp4 */; };
 		3777655D1DC7232C006941BF /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3777655C1DC7232C006941BF /* AVFoundation.framework */; };
 		37B3E2C11DD16D2F0045E14A /* playView+playInfoShow.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B3E2C01DD16D2F0045E14A /* playView+playInfoShow.m */; };
 		37B3E2C41DD17F900045E14A /* playView+showHMSecond.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B3E2C31DD17F900045E14A /* playView+showHMSecond.m */; };
 		37B3E2C71DD182A60045E14A /* playView+slidePlayControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B3E2C61DD182A60045E14A /* playView+slidePlayControl.m */; };
 		37BC0EBA1DE9D9AA007E82F2 /* progressSlideView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37BC0EB91DE9D9AA007E82F2 /* progressSlideView.m */; };
-		37C796D61DC8361F0007D8B2 /* b.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 37C796D51DC8361F0007D8B2 /* b.mp4 */; };
 		37F500FE1DCF45F000EB93E6 /* playView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F500FB1DCF45F000EB93E6 /* playView.m */; };
 		37F500FF1DCF45F000EB93E6 /* progressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F500FD1DCF45F000EB93E6 /* progressView.m */; };
 		37F501031DCF468800EB93E6 /* playView+playControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F501021DCF468800EB93E6 /* playView+playControl.m */; };
@@ -61,7 +59,6 @@
 		377765421DC71E60006941BF /* learningAVPlayingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = learningAVPlayingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		377765461DC71E60006941BF /* learningAVPlayingUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = learningAVPlayingUITests.m; sourceTree = "<group>"; };
 		377765481DC71E60006941BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		377765591DC72096006941BF /* a.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = a.mp4; sourceTree = "<group>"; };
 		3777655C1DC7232C006941BF /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		37B3E2BF1DD16D2F0045E14A /* playView+playInfoShow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "playView+playInfoShow.h"; sourceTree = "<group>"; };
 		37B3E2C01DD16D2F0045E14A /* playView+playInfoShow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "playView+playInfoShow.m"; sourceTree = "<group>"; };
@@ -71,7 +68,6 @@
 		37B3E2C61DD182A60045E14A /* playView+slidePlayControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "playView+slidePlayControl.m"; sourceTree = "<group>"; };
 		37BC0EB81DE9D9AA007E82F2 /* progressSlideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = progressSlideView.h; sourceTree = "<group>"; };
 		37BC0EB91DE9D9AA007E82F2 /* progressSlideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = progressSlideView.m; sourceTree = "<group>"; };
-		37C796D51DC8361F0007D8B2 /* b.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = b.mp4; sourceTree = "<group>"; };
 		37F500FA1DCF45F000EB93E6 /* playView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = playView.h; sourceTree = "<group>"; };
 		37F500FB1DCF45F000EB93E6 /* playView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = playView.m; sourceTree = "<group>"; };
 		37F500FC1DCF45F000EB93E6 /* progressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = progressView.h; sourceTree = "<group>"; };
@@ -186,8 +182,6 @@
 		377765581DC7208C006941BF /* source */ = {
 			isa = PBXGroup;
 			children = (
-				377765591DC72096006941BF /* a.mp4 */,
-				37C796D51DC8361F0007D8B2 /* b.mp4 */,
 			);
 			path = source;
 			sourceTree = "<group>";
@@ -351,9 +345,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				377765311DC71E60006941BF /* LaunchScreen.storyboard in Resources */,
-				3777655A1DC72096006941BF /* a.mp4 in Resources */,
 				3777652E1DC71E60006941BF /* Assets.xcassets in Resources */,
-				37C796D61DC8361F0007D8B2 /* b.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
