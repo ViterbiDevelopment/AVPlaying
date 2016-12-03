@@ -206,8 +206,11 @@
        NSLog(@"current-----%f-------cache------%f",current,weakself.currentCacheTime);
        
        if (weakself.currentCacheTime - current <= 1 && weakself.currentCacheTime != 0.000000) {
+        
            
-           NSLog(@"检测卡顿,暂停播放");
+           weakself.hud = [MBProgressHUD showHUDAddedTo:weakself animated:true];
+           
+           weakself.hud.removeFromSuperViewOnHide = TRUE;
            
            [weakself pause];
            
@@ -255,8 +258,7 @@
         }else{
         
             [_hud hideAnimated:true];
-            
-            NSLog(@"网络有问题");
+            //  NSLog(@"网络有问题");
         
         }
         
@@ -272,10 +274,11 @@
         CGFloat totalDuration = CMTimeGetSeconds(duration);
     
         weakSelf.playProgress.cacheProgressValue = [NSString stringWithFormat:@"%.6f",timeInterval/totalDuration];
-        if (_currentCacheTime - _currentCacheTime > 1 && _myPlayer.rate == 0 ) {
+        if (_currentCacheTime - _currentPlayTime > 1 && _myPlayer.rate == 0 ) {
             
             [self play];
             
+            [weakSelf.hud hideAnimated:true];
         }
         
     }
