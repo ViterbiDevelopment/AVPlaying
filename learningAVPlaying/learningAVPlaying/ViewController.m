@@ -34,6 +34,8 @@
     
     _isHalfScreen = NO;
     
+    //这是一个注释'
+    
     self.view.backgroundColor = [UIColor whiteColor];
     
 //    _myPlayView = [[playView alloc] initWithFrame:CGRectMake(0, 0, KSCreenW, KSCreenH-300)];
