@@ -48,6 +48,7 @@
     
     [self.view addSubview:_myPlayView];
     
+    // qwqwwwddwdw
     
     progressView * view = _myPlayView.playProgress;
     
@@ -64,47 +65,63 @@
     
     if ([sender.currentTitle isEqualToString:@"全屏"]) {
         
-        _isHalfScreen=true;
+        __weak typeof(self) weakSelf = self;
         
+        [UIView animateWithDuration:0.5 animations:^{
+           
+            weakSelf.myPlayView.playerLayer.frame = CGRectMake(0, 0, KSCreenH, KSCreenW);
+            
+
+        }];
         
-        [[UIDevice currentDevice]setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait]  forKey:@"orientation"];//这句话是防止手动先把设备置为横屏,导致下面的语句失效.
-        [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationLandscapeLeft] forKey:@"orientation"];
         [UIView animateWithDuration:0.5 animations:^{
             
-            _myPlayView.frame = self.view.bounds;
+            weakSelf.myPlayView.frame = CGRectMake(0, 0, KSCreenH, KSCreenW);
             
-            _myPlayView.playerLayer.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
+            weakSelf.myPlayView.center = self.view.center;
+            
+
+            CGAffineTransform form = CGAffineTransformIdentity;
+            
+            weakSelf.myPlayView.transform = CGAffineTransformRotate(form, M_PI_2);
+            
         
             
         } completion:^(BOOL finished) {
             
-            _isHalfScreen = false;
             
             [sender setTitle:@"小屏" forState:UIControlStateNormal];
             
-            
         }];
-
+        
+        
     }
     else{
-    
-        __weak ViewController * weakSelf = self;
+    //
+        
+        __weak typeof(self) weakSelf = self;
         
         
-        [[UIDevice currentDevice]setValue:[NSNumber numberWithInteger:UIDeviceOrientationLandscapeRight]  forKey:@"orientation"];//这句话是防止手动先把设备置为横屏,导致下面的语句失效.
-        [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
         [UIView animateWithDuration:0.5 animations:^{
-       
-            _myPlayView.frame = CGRectMake(0, 0, weakSelf.view.frame.size.width, weakSelf.view.frame.size.height-300);
-            _myPlayView.playerLayer.frame = CGRectMake(0, 0, weakSelf.view.frame.size.width, weakSelf.view.frame.size.height-300);
+            
+            CGAffineTransform form = CGAffineTransformIdentity;
+            
+            weakSelf.myPlayView.transform = CGAffineTransformRotate(form, 0);
+            
+            weakSelf.myPlayView.frame = CGRectMake(0, 0, KSCreenW , KSCreenH - 300);
+
+               weakSelf.myPlayView.playerLayer.frame = CGRectMake(0, 0, KSCreenW, KSCreenH - 300);
+            
             
             
         } completion:^(BOOL finished) {
+            
             
             [sender setTitle:@"全屏" forState:UIControlStateNormal];
             
         }];
-    
+        
+
         
     
     }
@@ -114,17 +131,17 @@
 }
 
 
--(UIInterfaceOrientationMask)supportedInterfaceOrientations{
-
-    if (_isHalfScreen) {
-        
-        return UIInterfaceOrientationMaskLandscape;
-    }
-
-    return UIInterfaceOrientationMaskPortrait;
-
-}
-
+//-(UIInterfaceOrientationMask)supportedInterfaceOrientations{
+//
+//    if (_isHalfScreen) {
+//        
+//        return UIInterfaceOrientationMaskLandscape;
+//    }
+//
+//    return UIInterfaceOrientationMaskPortrait;
+//
+//}
+//
 
 
 

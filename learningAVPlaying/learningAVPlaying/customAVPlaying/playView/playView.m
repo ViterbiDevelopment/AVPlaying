@@ -131,7 +131,8 @@
     _playerLayer.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
    
     
-     _playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
+    _playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
+    
 
     [self.layer addSublayer:_playerLayer];
     
