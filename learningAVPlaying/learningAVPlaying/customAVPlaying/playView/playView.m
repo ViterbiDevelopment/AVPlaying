@@ -64,6 +64,9 @@
         
         //添加进度条控制
         [self addSlidePlayControl];
+        
+        [self addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
+        
     }
 
     return self;
@@ -129,6 +132,10 @@
     _playerLayer = [AVPlayerLayer playerLayerWithPlayer:self.myPlayer];
     
     _playerLayer.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+    
+    _playerLayer.backgroundColor = [UIColor clearColor].CGColor;
+    
+    self.backgroundColor = [UIColor clearColor];
    
     
     _playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
@@ -282,6 +289,13 @@
             [weakSelf.hud hideAnimated:true];
         }
         
+    }
+    
+    
+    
+    if ([keyPath isEqualToString:@"frame"]) {
+        
+        _playerLayer.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
     }
     
 

@@ -67,20 +67,12 @@
         
         __weak typeof(self) weakSelf = self;
         
-        [UIView animateWithDuration:0.5 animations:^{
-           
-            weakSelf.myPlayView.playerLayer.frame = CGRectMake(0, 0, KSCreenH, KSCreenW);
-            
-
-        }];
         
         [UIView animateWithDuration:0.5 animations:^{
             
             weakSelf.myPlayView.frame = CGRectMake(0, 0, KSCreenH, KSCreenW);
             
             weakSelf.myPlayView.center = self.view.center;
-            
-
             CGAffineTransform form = CGAffineTransformIdentity;
             
             weakSelf.myPlayView.transform = CGAffineTransformRotate(form, M_PI_2);
@@ -109,9 +101,7 @@
             weakSelf.myPlayView.transform = CGAffineTransformRotate(form, 0);
             
             weakSelf.myPlayView.frame = CGRectMake(0, 0, KSCreenW , KSCreenH - 300);
-
-               weakSelf.myPlayView.playerLayer.frame = CGRectMake(0, 0, KSCreenW, KSCreenH - 300);
-            
+   
             
             
         } completion:^(BOOL finished) {
@@ -122,7 +112,6 @@
         }];
         
 
-        
     
     }
     
