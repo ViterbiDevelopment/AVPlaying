@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3771CC481E78CAAE0054AB24 /* cacheVideoConnect.m in Sources */ = {isa = PBXBuildFile; fileRef = 3771CC471E78CAAE0054AB24 /* cacheVideoConnect.m */; };
+		3771CCA41E7996950054AB24 /* cacheVideoSaveCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 3771CCA31E7996950054AB24 /* cacheVideoSaveCache.m */; };
 		377765231DC71E60006941BF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 377765221DC71E60006941BF /* main.m */; };
 		377765261DC71E60006941BF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 377765251DC71E60006941BF /* AppDelegate.m */; };
 		377765291DC71E60006941BF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 377765281DC71E60006941BF /* ViewController.m */; };
@@ -44,6 +46,10 @@
 
 /* Begin PBXFileReference section */
 		1150460C1BED7A8FB3447378 /* Pods-learningAVPlaying.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-learningAVPlaying.debug.xcconfig"; path = "Pods/Target Support Files/Pods-learningAVPlaying/Pods-learningAVPlaying.debug.xcconfig"; sourceTree = "<group>"; };
+		3771CC461E78CAAE0054AB24 /* cacheVideoConnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cacheVideoConnect.h; sourceTree = "<group>"; };
+		3771CC471E78CAAE0054AB24 /* cacheVideoConnect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cacheVideoConnect.m; sourceTree = "<group>"; };
+		3771CCA21E7996950054AB24 /* cacheVideoSaveCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cacheVideoSaveCache.h; sourceTree = "<group>"; };
+		3771CCA31E7996950054AB24 /* cacheVideoSaveCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cacheVideoSaveCache.m; sourceTree = "<group>"; };
 		3777651E1DC71E60006941BF /* learningAVPlaying.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = learningAVPlaying.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		377765221DC71E60006941BF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		377765241DC71E60006941BF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -105,6 +111,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3771CC451E77FFB70054AB24 /* CacheVideo */ = {
+			isa = PBXGroup;
+			children = (
+				3771CC461E78CAAE0054AB24 /* cacheVideoConnect.h */,
+				3771CC471E78CAAE0054AB24 /* cacheVideoConnect.m */,
+				3771CCA21E7996950054AB24 /* cacheVideoSaveCache.h */,
+				3771CCA31E7996950054AB24 /* cacheVideoSaveCache.m */,
+			);
+			path = CacheVideo;
+			sourceTree = "<group>";
+		};
 		377765151DC71E60006941BF = {
 			isa = PBXGroup;
 			children = (
@@ -135,6 +152,7 @@
 				377765271DC71E60006941BF /* ViewController.h */,
 				377765281DC71E60006941BF /* ViewController.m */,
 				377765541DC71EA8006941BF /* customAVPlaying */,
+				3771CC451E77FFB70054AB24 /* CacheVideo */,
 				3777652D1DC71E60006941BF /* Assets.xcassets */,
 				3777652F1DC71E60006941BF /* LaunchScreen.storyboard */,
 				377765321DC71E60006941BF /* Info.plist */,
@@ -419,6 +437,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				37B3E2C41DD17F900045E14A /* playView+showHMSecond.m in Sources */,
+				3771CC481E78CAAE0054AB24 /* cacheVideoConnect.m in Sources */,
 				37B3E2C71DD182A60045E14A /* playView+slidePlayControl.m in Sources */,
 				377765291DC71E60006941BF /* ViewController.m in Sources */,
 				377765261DC71E60006941BF /* AppDelegate.m in Sources */,
@@ -427,6 +446,7 @@
 				37F500FE1DCF45F000EB93E6 /* playView.m in Sources */,
 				377765231DC71E60006941BF /* main.m in Sources */,
 				37F500FF1DCF45F000EB93E6 /* progressView.m in Sources */,
+				3771CCA41E7996950054AB24 /* cacheVideoSaveCache.m in Sources */,
 				37B3E2C11DD16D2F0045E14A /* playView+playInfoShow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

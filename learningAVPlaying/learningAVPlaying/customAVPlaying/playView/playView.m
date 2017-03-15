@@ -7,10 +7,15 @@
 //
 
 #import "playView.h"
+
 #import "progressView.h"
 #import "playView+playControl.h"
 #import "playView+showHMSecond.h"
 #import "playView+slidePlayControl.h"
+
+
+#import "cacheVideoConnect.h"
+
 #import "Masonry.h"
 #import "MBProgressHUD.h"
 
@@ -20,14 +25,13 @@
 @interface playView()<progressViewDelegate>
 
 @property(nonatomic,strong)AVPlayerItem *playItem;
-
+@property (nonatomic,strong) AVURLAsset *videoURLAsset;
 @property(nonatomic,strong)MBProgressHUD *hud;
-
 @property(nonatomic,strong,nonnull)NSString * urlString;
-
 @property(nonatomic,assign)double currentCacheTime;
-
 @property(nonatomic,assign)double currentPlayTime;
+
+@property(nonatomic,strong)cacheVideoConnect *cacheConnnect;
 
 @end
 
@@ -49,19 +53,13 @@
 
     if (self = [super initWithFrame:frame]) {
         
-    
-        
         self.backgroundColor = [UIColor blackColor];
         
         _urlString = urlString;
         
         [self setUp];
-        
-        
         //初始化控制手势
-        
         [self initControlGester];
-        
         //添加进度条控制
         [self addSlidePlayControl];
         
@@ -89,75 +87,54 @@
     
 }
 
--(AVPlayerItem *)playItem{
-
-    if (_playItem == nil) {
-        
-        
-        //播放 本地资源
-        if (_urlString == nil) {
-            
-            NSString * path = [[NSBundle mainBundle] pathForResource:@"b" ofType:@"mp4"];
-            
-            NSURL *sourceMovieURL = [NSURL fileURLWithPath:path];
-            
-            AVAsset *movieAsset = [AVURLAsset URLAssetWithURL:sourceMovieURL options:nil];
-            
-            _playItem = [[AVPlayerItem alloc] initWithAsset:movieAsset];
-        }
-        //播放网络资源
-        else{
-        
-            NSURL * url = [NSURL URLWithString:_urlString];
-            self.playItem = [AVPlayerItem playerItemWithURL:url];
-            
-        
-        }
-        
-       
-       
-    }
-
-     return _playItem;
-    
-    
-}
-
-
-
 -(void)setUp{
 
 
+    //播放 本地资源
+    if (_urlString == nil) {
+        NSString * path = [[NSBundle mainBundle] pathForResource:@"b" ofType:@"mp4"];
+        NSURL *sourceMovieURL = [NSURL fileURLWithPath:path];
+        AVAsset *movieAsset = [AVURLAsset URLAssetWithURL:sourceMovieURL options:nil];
+        _playItem = [[AVPlayerItem alloc] initWithAsset:movieAsset];
+    }
+    //播放网络资源
+    else{
+        
+        _cacheConnnect = [[cacheVideoConnect alloc] init];
+    
+        NSURL *url = [NSURL URLWithString:_urlString];
+        //替换成系统不能识别的 url，才能让 resourceLoader的代理方法运行.
+        
+        NSURL *playUrl = [self getSchemeVideoURL:url];
+        _videoURLAsset = [AVURLAsset assetWithURL:playUrl];
+        //设置resourceLoader的代理
+        [_videoURLAsset.resourceLoader setDelegate:_cacheConnnect queue:dispatch_get_main_queue()];
+        
+        _playItem = [AVPlayerItem playerItemWithAsset:self.videoURLAsset];
+        
+    }
+
     
     _playerLayer = [AVPlayerLayer playerLayerWithPlayer:self.myPlayer];
-    
     _playerLayer.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
-    
     _playerLayer.backgroundColor = [UIColor clearColor].CGColor;
     
     self.backgroundColor = [UIColor clearColor];
-   
-    
     _playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
-    
-
     [self.layer addSublayer:_playerLayer];
     
 
 
     _playProgress = [[progressView alloc] initWithFrame:CGRectMake(0, self.frame.size.height - 40, self.frame.size.width, 40)];
-
     _playProgress.delegate = self;
-
     [self addSubview:_playProgress];
+    
     
     [_playProgress mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.size.height.mas_equalTo(40);
-        
         make.bottom.equalTo(self).with.offset(0);
         make.right.equalTo(self).with.offset(0);
-        
         make.left.equalTo(self).with.offset(0);
         
     }];
@@ -375,6 +352,15 @@
     
     
 }
+// 替换系统无法识别的 URL
+- (NSURL *)getSchemeVideoURL:(NSURL *)url
+{
+    NSURLComponents *components = [[NSURLComponents alloc] initWithURL:url resolvingAgainstBaseURL:NO];
+    components.scheme = @"streaming";
+    return [components URL];
+}
+
+
 #pragma mark-----暂停
 
 -(void)pause{
@@ -389,11 +375,9 @@
 }
 //status
 -(void)dealloc{
-
     
     [self.myPlayer.currentItem removeObserver:self forKeyPath:@"status" context:nil];
 
-    
     
 }
 

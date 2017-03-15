@@ -38,17 +38,16 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-//    _myPlayView = [[playView alloc] initWithFrame:CGRectMake(0, 0, KSCreenW, KSCreenH-300)];
     
-    NSString * ulrString = @"http://v.jxvdy.com/sendfile/w5bgP3A8JgiQQo5l0hvoNGE2H16WbN09X-ONHPq3P3C1BISgf7C-qVs6_c8oaw3zKScO78I--b0BGFBRxlpw13sf2e54QA";
+    
+    NSString * ulrString = @"http://zyvideo1.oss-cn-qingdao.aliyuncs.com/zyvd/7c/de/04ec95f4fd42d9d01f63b9683ad0";
     
     _myPlayView = [[playView alloc] initWithFrameAndUrl:CGRectMake(0, 0, KSCreenW, KSCreenH-300) url:ulrString];
     
-  //  _myPlayView.backgroundColor = uicolor.red
-    
+   
     [self.view addSubview:_myPlayView];
     
-    // qwqwwwddwdw
+    
     
     progressView * view = _myPlayView.playProgress;
     
