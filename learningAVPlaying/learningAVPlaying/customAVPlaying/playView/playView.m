@@ -186,10 +186,7 @@
         float total = CMTimeGetSeconds([playerItem duration]);
        
        weakself.currentPlayTime = current;
-       
-       NSLog(@"000000000000---------%f",current);
-       NSLog(@"current-----%f-------cache------%f",current,weakself.currentCacheTime);
-       
+    
        if (weakself.currentCacheTime - current <= 1 && weakself.currentCacheTime != 0.000000) {
         
            
@@ -226,7 +223,8 @@
     AVPlayerItem * itme = (AVPlayerItem *)object;
     
     __weak playView * weakSelf = self;
-
+    
+  
     if ([keyPath isEqualToString:@"status"]) {
         
         if ([itme status] == AVPlayerStatusReadyToPlay) {

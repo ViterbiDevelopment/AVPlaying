@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVFoundation.h>
 
+#import "cacheVideoSaveCache.h"
+
 @interface cacheVideoConnect : NSObject<AVAssetResourceLoaderDelegate>
+
 
 @end
