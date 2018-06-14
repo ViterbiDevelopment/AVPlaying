@@ -31,109 +31,52 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
    
-    
     _isHalfScreen = NO;
     
     //这是一个注释'
     
     self.view.backgroundColor = [UIColor whiteColor];
-    
-    
-    
     NSString * ulrString = @"http://zyvideo1.oss-cn-qingdao.aliyuncs.com/zyvd/7c/de/04ec95f4fd42d9d01f63b9683ad0";
     
     _myPlayView = [[playView alloc] initWithFrameAndUrl:CGRectMake(0, 0, KSCreenW, KSCreenH-300) url:ulrString];
-    
-   
     [self.view addSubview:_myPlayView];
-    
-    
-    
     progressView * view = _myPlayView.playProgress;
     
     [view.screenFullButton addTarget:self action:@selector(fullScreenBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    
-   
-    
 
 }
 
 
 -(void)fullScreenBtnClick:(UIButton *)sender{
-    
-    
+  
     if ([sender.currentTitle isEqualToString:@"全屏"]) {
-        
-        __weak typeof(self) weakSelf = self;
-        
-        
+      
         [UIView animateWithDuration:0.5 animations:^{
             
-            weakSelf.myPlayView.frame = CGRectMake(0, 0, KSCreenH, KSCreenW);
-            
-            weakSelf.myPlayView.center = self.view.center;
+            self.myPlayView.frame = CGRectMake(0, 0, KSCreenH, KSCreenW);
+            self.myPlayView.center = self.view.center;
             CGAffineTransform form = CGAffineTransformIdentity;
-            
-            weakSelf.myPlayView.transform = CGAffineTransformRotate(form, M_PI_2);
-            
-        
-            
+            self.myPlayView.transform = CGAffineTransformRotate(form, M_PI_2);
+          
         } completion:^(BOOL finished) {
-            
-            
+          
             [sender setTitle:@"小屏" forState:UIControlStateNormal];
-            
         }];
-        
-        
+      
     }
     else{
-    //
-        
-        __weak typeof(self) weakSelf = self;
-        
-        
+  
         [UIView animateWithDuration:0.5 animations:^{
             
             CGAffineTransform form = CGAffineTransformIdentity;
-            
-            weakSelf.myPlayView.transform = CGAffineTransformRotate(form, 0);
-            
-            weakSelf.myPlayView.frame = CGRectMake(0, 0, KSCreenW , KSCreenH - 300);
-   
-            
-            
+            self.myPlayView.transform = CGAffineTransformRotate(form, 0);
+            self.myPlayView.frame = CGRectMake(0, 0, KSCreenW , KSCreenH - 300);
+         
         } completion:^(BOOL finished) {
-            
-            
-            [sender setTitle:@"全屏" forState:UIControlStateNormal];
-            
+          [sender setTitle:@"全屏" forState:UIControlStateNormal];
         }];
-        
-
-    
     }
-    
-
-    
 }
-
-
-//-(UIInterfaceOrientationMask)supportedInterfaceOrientations{
-//
-//    if (_isHalfScreen) {
-//        
-//        return UIInterfaceOrientationMaskLandscape;
-//    }
-//
-//    return UIInterfaceOrientationMaskPortrait;
-//
-//}
-//
-
-
-
-
 
 
 @end

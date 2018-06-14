@@ -10,13 +10,8 @@
 
 @interface playView (playInfoShow)
 
-
 @property(nonatomic,strong)UILabel *infoLable;
-
-
 -(void)showInfoLableWithTextSecond:(float)second;
-
-
 -(void)dissMissInfoLable;
 
 @end

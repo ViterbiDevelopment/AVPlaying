@@ -156,7 +156,6 @@
 				3777652D1DC71E60006941BF /* Assets.xcassets */,
 				3777652F1DC71E60006941BF /* LaunchScreen.storyboard */,
 				377765321DC71E60006941BF /* Info.plist */,
-				377765581DC7208C006941BF /* source */,
 				377765211DC71E60006941BF /* Supporting Files */,
 			);
 			path = learningAVPlaying;
@@ -195,13 +194,6 @@
 				37F500F91DCF45F000EB93E6 /* playView */,
 			);
 			path = customAVPlaying;
-			sourceTree = "<group>";
-		};
-		377765581DC7208C006941BF /* source */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = source;
 			sourceTree = "<group>";
 		};
 		3777655B1DC7232B006941BF /* Frameworks */ = {

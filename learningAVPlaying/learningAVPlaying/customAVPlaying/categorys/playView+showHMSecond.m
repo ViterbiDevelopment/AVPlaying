@@ -9,21 +9,11 @@
 #import "playView+showHMSecond.h"
 
 @implementation playView (showHMSecond)
-
-
 -(NSString *)showHMAndSecondString:(float)second{
-    
-
     float totalMinute = second/60;
-    
     float totalLeft = (int)second % 60;
-    
     NSString * totalString = [NSString stringWithFormat:@"%d:%d",(int)totalMinute,(int)totalLeft];
-    
-
     return totalString;
-    
-
 }
 
 @end

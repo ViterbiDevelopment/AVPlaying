@@ -11,23 +11,12 @@
 
 
 @class progressView;
-
-
 @interface playView : UIView
-
 @property(nonatomic,strong,nonnull)AVPlayer *myPlayer;
-
 @property(nonatomic,strong,nonnull)progressView *playProgress;
-
 @property(nonatomic,strong,nonnull)AVPlayerLayer *playerLayer;
-
-
 -(instancetype)initWithFrameAndUrl:(CGRect)frame url:(NSString *)urlString;
-
-
 -(void)play;
-
 -(void)pause;
-
 
 @end

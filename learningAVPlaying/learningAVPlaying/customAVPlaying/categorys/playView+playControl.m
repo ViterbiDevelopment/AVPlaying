@@ -17,34 +17,25 @@
 
 @implementation playView (playControl)
 
-
 -(void)initControlGester{
 
     [self addGestureRecognizer:self.controlGester];
-
 }
 
 -(void)setMoveToSecond:(CGFloat)moveToSecond{
 
-
     objc_setAssociatedObject(self, &VTControlPropertyMoveToSecond, @(moveToSecond), OBJC_ASSOCIATION_RETAIN);
-    
 }
 
 -(CGFloat)moveToSecond{
-
-
    return [objc_getAssociatedObject(self, &VTControlPropertyMoveToSecond) floatValue];
-
 }
 
 -(UIPanGestureRecognizer *)controlGester{
- 
-    
+  
     UIPanGestureRecognizer *panGest = objc_getAssociatedObject(self, &VTPlayControlPropertyPlayControlGestureRecognizer);
     
     if (panGest == nil) {
-        
         panGest = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(didRecognizedPlayControlRecognizer:)];
         panGest.maximumNumberOfTouches = 1;
         panGest.minimumNumberOfTouches = 1;
@@ -52,42 +43,24 @@
     }
     
     return panGest;
-    
 }
-
-
-
-
-
 
 -(void)didRecognizedPlayControlRecognizer:(UIPanGestureRecognizer *)gester{
 
-
-
-   
-    CGPoint point = [gester locationInView:self];
-    
-
+  CGPoint point = [gester locationInView:self];
     switch (gester.state) {
         case UIGestureRecognizerStateChanged:
         {
-         float second  = [self shouldMoveSecond:self.myPlayer.currentItem distance:point.x];
-            
-        
+            float second  = [self shouldMoveSecond:self.myPlayer.currentItem distance:point.x];
             [self showInfoLableWithTextSecond:second];
-            
-            
         }
             break;
         case UIGestureRecognizerStateEnded:
             
         {
-            
            [self dissMissInfoLable];
-            
             float current =  CMTimeGetSeconds(self.myPlayer.currentTime);
-            
-        
+
             float shouldMove = [self shouldMoveSecond:self.myPlayer.currentItem distance:point.x];
             
             float totalTime = CMTimeGetSeconds([self.myPlayer.currentItem duration]);
@@ -107,7 +80,6 @@
             }
          
             float move = shouldMove + current;
-            
             [self moveToTime:move];
             
         }
@@ -124,8 +96,6 @@
         default:
             break;
     }
-    
-    
 }
 
 
@@ -134,25 +104,14 @@
     //获得视频总共时长
     
     float totalSecond = CMTimeGetSeconds([AVItem duration]);
-    
-   
     float moveSecond  =  totalSecond/self.frame.size.width * (pointX - self.moveToSecond)*playScale;
-    
-    
     return moveSecond;
-    
-
-
-
-    
+  
 }
 
 -(void)moveToTime:(CGFloat )time{
 
-    
     CMTimeScale scale =  self.myPlayer.currentItem.asset.duration.timescale;
-    
-    
     CMTime Mytime = CMTimeMakeWithSeconds(time,scale);
     
     __weak playView * weakSelf = self;
@@ -170,21 +129,11 @@
         else{
         
             if (finished) {
-                
                 [weakSelf play];
-                
             }
-            
         }
-        
-        
-       
-        
-
     }];
-    
-    
-    
+  
 }
 
 

@@ -11,19 +11,10 @@
 
 @interface cacheVideoSaveCache()<NSURLConnectionDataDelegate>
 
-
 @property(nonatomic,strong)NSURLConnection *downloadConnection;
-
 @property(nonatomic,strong)NSFileHandle *handelDataFile;
-
-
-
 @property(nonatomic,strong)NSMutableArray *connectArray;
-
-
 @property(nonatomic,strong)NSString *videoTempPath;
-
-
 @property(nonatomic,assign)BOOL isFinishLoading;
 
 @end
@@ -46,9 +37,6 @@
             ;
         }
         [[NSFileManager defaultManager] createFileAtPath:_videoTempPath contents:nil attributes:nil];
-        
-        
-        
     }
     
     return self;
@@ -87,9 +75,6 @@
     [self.downloadConnection setDelegateQueue:[NSOperationQueue mainQueue]];
     
     [self.downloadConnection start];
-    
-    
-
 }
 
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response{
@@ -111,28 +96,18 @@
     [self.connectArray addObject:connection];
     
     self.handelDataFile = [NSFileHandle fileHandleForWritingAtPath:_videoTempPath];
-    
-   
-    
-    
+  
 }
 
 
 -(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
 
     [self.handelDataFile seekToEndOfFile];
-    
     [self.handelDataFile writeData:data];
-    
     _downloadOffset = _downloadOffset + data.length;
-    
     if ([_delegate respondsToSelector:@selector(didReceiveVideoData:)]) {
-        
-
-        
+    
         [_delegate didReceiveVideoData:self];
-        
-        
     }
 }
 
@@ -142,7 +117,6 @@
     if (self.connectArray.count == 1) {
         
         _isFinishLoading = YES;
-        
         NSString *document = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).lastObject;
         NSString *movePath =  [document stringByAppendingPathComponent:@"保存数据.mp4"];
         
@@ -153,29 +127,18 @@
         }else{
             NSLog(@"rename fail");
         }
-        NSLog(@"----%@", movePath);
-        
     }
     
     if ([_delegate respondsToSelector:@selector(didFinishLoadingCacheTask:)]) {
-        
         [_delegate didFinishLoadingCacheTask:self];
     }
-    
-    
-    
-
 }
 
 -(void)cancle{
-
-
     if (self.downloadConnection) {
         
-        [self.downloadConnection cancel];
-        
+      [self.downloadConnection cancel];
     }
-    
 }
 
 @end

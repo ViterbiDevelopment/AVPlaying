@@ -18,33 +18,17 @@ typedef enum : NSUInteger {
 @protocol progressViewDelegate <NSObject>
 
 @optional
-
-
 -(void)playOrPause:(playStaus)status;
-
-
 @end
 
 @interface progressView : UIView
-
-
 @property(nonatomic,strong)progressSlideView *sliderView;
-
-
 @property(nonatomic,strong)UIButton *playButton;
-
 @property(nonatomic,strong)UIButton *screenFullButton;
-
 @property(nonatomic,strong)UILabel *currentTimeLable;
-
 @property(nonatomic,strong)UILabel *totalTimeLable;
-
 @property(nonatomic,copy)NSString *progressValue;
-
 @property(nonatomic,copy)NSString *cacheProgressValue;
-
-
 @property(nonatomic,assign)id<progressViewDelegate> delegate;
-
 
 @end

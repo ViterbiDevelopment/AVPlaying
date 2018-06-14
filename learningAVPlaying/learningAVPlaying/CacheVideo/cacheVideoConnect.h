@@ -13,5 +13,4 @@
 
 @interface cacheVideoConnect : NSObject<AVAssetResourceLoaderDelegate>
 
-
 @end

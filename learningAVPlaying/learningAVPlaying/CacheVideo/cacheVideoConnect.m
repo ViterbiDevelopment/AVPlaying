@@ -17,8 +17,6 @@
 
 @property (nonatomic,strong) NSString *videoPath;
 
-
-
 @end
 
 @implementation cacheVideoConnect
@@ -30,11 +28,8 @@
         NSString *document = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).lastObject;
         
         _videoPath = [document stringByAppendingPathComponent:@"temp.mp4"];
-
         
         self.requestArray = [NSMutableArray new];
-        
-        
     }
     
     return self;
@@ -53,11 +48,8 @@
 }
 
 -(void)resourceLoader:(AVAssetResourceLoader *)resourceLoader didCancelLoadingRequest:(AVAssetResourceLoadingRequest *)loadingRequest{
-    
-    
+  
     [self.requestArray removeObject:loadingRequest];
-    
-    
 }
 
 -(BOOL)resourceLoader:(AVAssetResourceLoader *)resourceLoader shouldWaitForLoadingOfRequestedResource:(AVAssetResourceLoadingRequest *)loadingRequest{
@@ -75,8 +67,6 @@
     NSMutableArray *finishArray = [NSMutableArray new];
     
     for (AVAssetResourceLoadingRequest *loadingRequest in _requestArray) {
-        
-        
         [self fillInContentInformation:loadingRequest.contentInformationRequest];
         
         // 判读请求是否完成
@@ -89,12 +79,9 @@
             
             [loadingRequest finishLoading];
         }
-        
     }
     
     [_requestArray removeObjectsInArray:finishArray];
-    
-    
     
 }
 
@@ -126,19 +113,12 @@
     
     // Respond with whatever is available if we can't satisfy the request fully yet
     NSUInteger numberOfBytesToRespondWith = MIN((NSUInteger)dataRequest.requestedLength, unreadBytes);
-    
-    
     [dataRequest respondWithData:[filedata subdataWithRange:NSMakeRange((NSUInteger)start- self.cacheTask.offset, (NSUInteger)numberOfBytesToRespondWith)]];
-    
-    
-    
+  
     long long endOffset = start + dataRequest.requestedLength;
     BOOL didRespondFully = (self.cacheTask.offset + self.cacheTask.downloadOffset) >= endOffset;
     
     return didRespondFully;
-    
-    
-
 }
 
 
@@ -147,60 +127,31 @@
     NSURL *replaceUrl = [request.request URL];
     
     NSRange range = NSMakeRange(request.dataRequest.currentOffset, NSUIntegerMax);
-    
-    
+  
     if (self.cacheTask.downloadOffset > 0) {
         
         // 对请求进行处理
-        
         [self dealWithRequestArray];
-        
     }
 
     if (!self.cacheTask) {
-        
         _cacheTask = [[cacheVideoSaveCache alloc] init];
-        
         _cacheTask.delegate = self;
-        
         [_cacheTask setUrl:replaceUrl offSet:0];
-        
     }
     else{
-    
         if (_cacheTask.offset + _cacheTask.downloadOffset + 1024 * 30< range.location || range.location < _cacheTask.offset) {
-            
+
             [_cacheTask setUrl:replaceUrl offSet:range.location];
         }
-        
-        
     }
-    
-    
 }
-
 
 #pragma mark---cacheVideoSaveCacheDelegate
 
 -(void)didReceiveVideoData:(cacheVideoSaveCache *)cachTask{
-
-
     [self dealWithRequestArray];
-    
-    
 }
-
-
-
--(void)didFinishLoadingCacheTask:(cacheVideoSaveCache *)cacheTask{
-
-    
-}
-
-
-
-
-
-
+-(void)didFinishLoadingCacheTask:(cacheVideoSaveCache *)cacheTask{}
 
 @end

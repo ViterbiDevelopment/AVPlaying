@@ -19,11 +19,7 @@ static void * VTControlPropertyMoveToSecond;
 
 @property(nonatomic,strong,readonly)UIPanGestureRecognizer *controlGester;
 
-
-
 -(void)initControlGester;
-
 -(void)moveToTime:(CGFloat)time;
-
 
 @end
